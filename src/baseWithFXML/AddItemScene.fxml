@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="450.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="baseWithFXML.AddItemController">
+  <children>
+    <Button fx:id="buttonAddItem" layoutX="216.0" layoutY="415.0" mnemonicParsing="false" onAction="#saveItemToFile" text="Add Item" />
+    <Label fx:id="textLabelConfirmation" layoutX="14.0" layoutY="415.0" prefHeight="21.0" prefWidth="189.0" text="" />
+    <Text layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of item" />
+    <TextField fx:id="textFieldNameOfItem" layoutX="14.0" layoutY="42.0" prefWidth="200.0" />
+    <Text layoutX="16.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weight in grams" />
+    <TextField id="textField" fx:id="textFieldWeightInGrams" layoutX="16.0" layoutY="91.0" prefWidth="200.0" />
+    <Text layoutX="16.0" layoutY="136.0" scaleX="1.0" scaleY="0.9999923519334313" strokeType="OUTSIDE" strokeWidth="0.0" text="Brand" />
+    <TextField fx:id="textFieldBrand" layoutX="16.0" layoutY="139.0" prefWidth="200.0" />
+    <Text layoutX="16.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Model" />
+    <TextField fx:id="textFieldModel" layoutX="16.0" layoutY="192.0" prefWidth="200.0" />
+    <Text layoutX="16.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Purchase location" />
+    <TextField fx:id="textFieldPurchaseLocation" layoutX="16.0" layoutY="241.0" prefWidth="200.0" />
+    <Text layoutX="16.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price in DKK" />
+    <TextField fx:id="textFieldPriceInDKK" layoutX="16.0" layoutY="294.0" prefWidth="200.0" />
+    <Text id="textFieldItemName" layoutX="16.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note" />
+    <TextField fx:id="textFieldNote" layoutX="16.0" layoutY="344.0" prefWidth="200.0" />
+  </children>
+</AnchorPane>

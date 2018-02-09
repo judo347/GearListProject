@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-1.0" minWidth="-1.0" prefHeight="700.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="baseWithFXML.PrimarySceneController">
+  <children>
+    <ToolBar layoutX="0.0" layoutY="0.0" prefWidth="1000.0">
+      <items>
+        <Button fx:id="buttonNewItem" mnemonicParsing="false" onAction="#openWindowAddItem" text="New Item" wrapText="false" />
+        <Button fx:id="buttonRefreshList" mnemonicParsing="false" onAction="#refreshList" text="Refresh" />
+      </items>
+    </ToolBar>
+    <TableView fx:id="tableData" disable="false" focusTraversable="true" layoutX="0.0" layoutY="31.0" prefHeight="639.0000999999975" prefWidth="954.0" tableMenuButtonVisible="false" visible="true">
+      <columns>
+        <TableColumn maxWidth="145.0" minWidth="145.0" prefWidth="145.0" text="Name of Item" fx:id="tableColumnNameOfItem" />
+        <TableColumn maxWidth="75.0" minWidth="75.0" prefWidth="75.0" text="Weight (g)" fx:id="tableColumnWeight" />
+        <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Brand" fx:id="tableColumnBrand" />
+        <TableColumn maxWidth="110.0" minWidth="110.0" prefWidth="110.0" text="Model" fx:id="tableColumnModel" />
+        <TableColumn maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Purchase Location" fx:id="tableColumnPurchaseLocation" />
+        <TableColumn maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="Price (DKK)" fx:id="tableColumnPrice" />
+        <TableColumn maxWidth="215.0" minWidth="215.0" prefWidth="215.0" text="Note" fx:id="tableColumnNote" />
+        <TableColumn maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Count" fx:id="tableColumnCount" />
+      </columns>
+    </TableView>
+    <Label layoutX="79.0" layoutY="676.0" text="Current weight:" />
+    <Label fx:id="labelCurrentWeight" layoutX="171.0" layoutY="676.0" text="Label" />
+    <Line endX="-289.0" endY="-17.0" layoutX="456.0" layoutY="687.0" startX="-289.0" startY="12.0" />
+    <Line endX="-145.0" endY="15.0" layoutX="378.0" layoutY="684.0" startX="-145.0" startY="-14.0" />
+  </children>
+</AnchorPane>
