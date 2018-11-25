@@ -48,9 +48,8 @@ public class AddItemController implements Initializable {
         item.setPriceInDKK(textFieldPriceInDKK.getText());
         item.setNote(textFieldNote.getText());
 
-        //Save strings to file
-        OwnFileManager ofm = new OwnFileManager(); //New object from own class. For help with files.
-        ofm.saveInformationToFile(item); //Saves the item to file
+        //Add item to datamodel
+        psc.getDatamodel().addItem(item);
 
         //Clear text fields and print msg
         textFieldNameOfItem.clear();

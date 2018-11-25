@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import baseWithFXML.model.Datamodel;
 import baseWithFXML.model.Item;
-import baseWithFXML.utils.OwnFileManager;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,13 +35,13 @@ public class PrimarySceneController implements Initializable{
     @FXML private TableColumn<Item, String> tableColumnWeight;
     @FXML private TableView<Item> tableData;
 
-    //test
-    private ObservableList<Item> data = FXCollections.observableArrayList(); //TODO: Maybe create when getting it returned?
-    //private ObservableList<Item> data; //TODO: Maybe create when getting it returned?
+    private Datamodel datamodel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        datamodel = new Datamodel();
+        refreshList();
         // TODO (don't really need to do anything here).
 
     }
@@ -81,17 +79,6 @@ public class PrimarySceneController implements Initializable{
 
     @FXML
     public void refreshList() {
-        //tableColumnNameOfItem.setText("Hello"); //TEMP
-
-        OwnFileManager ofm = new OwnFileManager();
-        data = ofm.fillObservableList(data); //Filling list from items from file
-
-        /* //WORKING!! TEMP/BACKUP
-        data = FXCollections.observableArrayList(
-                new Item("1", "2", "3", "4", "5", "6", "7", "8"),
-                new Item("1", "2", "3", "4", "5", "6", "7", "8")
-        );
-        */
 
         //Telling witch value from Item goes into witch Column
         tableColumnNameOfItem.setCellValueFactory(new PropertyValueFactory<Item, String>("nameOfItem"));
@@ -104,6 +91,10 @@ public class PrimarySceneController implements Initializable{
         tableColumnNote.setCellValueFactory(new PropertyValueFactory<Item, String>("note"));
 
         //Filling table
-        tableData.setItems(data);
+        tableData.setItems(datamodel.getDataList());
+    }
+
+    public Datamodel getDatamodel() {
+        return datamodel;
     }
 }

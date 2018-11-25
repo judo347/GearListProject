@@ -8,28 +8,21 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class OwnFileManager {
-    public void examplePrintStatement(){
-        System.out.println("TestWOrked!");
-    }
 
-    public void saveInformationToFile(Item item){
+    public void saveInformationToFile(ArrayList<Item> items){
 
         try{
             File file = new File("datafile.txt");
 
-            /* Creates new file if none exists TODO: Include?
-            if(!file.exists()){
-                file.createNewFile();
-           }
-            */
-
-            FileWriter fw = new FileWriter(file, true); //Appending
+            FileWriter fw = new FileWriter(file, false); //Appending
             BufferedWriter bw = new BufferedWriter(fw); //Better performance
             //bw = null; //Clears the bw?
 
             //Print section
-            bw.write(formatSaveString(item));
-            bw.newLine();
+            for (Item item : items){
+                bw.write(formatSaveString(item));
+                bw.newLine();
+            }
             bw.flush(); //clears bw
             bw.close(); //Close file
 
@@ -37,7 +30,6 @@ public class OwnFileManager {
             System.out.println("Failed to open and write to file:");
             e.printStackTrace();
         }
-
     }
 
     //<Name><WeightInGrams><Brand><Model><PurchaseLocation><PriceInDKK><Note> //7 items
@@ -123,22 +115,4 @@ public class OwnFileManager {
 
         return tempItem;
     }
-
-
-
-
-
-
-    /* WORKING BASIC TEMP
-    public ObservableList<Item> fillObservableList(ObservableList<Item> data){
-
-        data = FXCollections.observableArrayList(
-                new Item(),
-                new Item()
-        );
-
-        return data;
-    }
-
-     */
 }
