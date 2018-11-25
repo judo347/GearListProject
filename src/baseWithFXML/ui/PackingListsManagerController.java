@@ -20,6 +20,7 @@ public class PackingListsManagerController {
     @FXML private TableColumn<ItemChecked, String> tableColumnPrice;
     @FXML private TableColumn<ItemChecked, String> tableColumnPurchaseLocation;
     @FXML private TableColumn<ItemChecked, String> tableColumnWeight;
+    @FXML private TableColumn<ItemChecked, String> tableColumnChecked;
 
     @FXML private ListView<PackingList> packingListList;
     @FXML private TableView<ItemChecked> packingListTable;
@@ -48,6 +49,7 @@ public class PackingListsManagerController {
         tableColumnPurchaseLocation.setCellValueFactory(new PropertyValueFactory<ItemChecked, String>("purchaseLocation"));
         tableColumnPrice.setCellValueFactory(new PropertyValueFactory<ItemChecked, String>("priceInDKK"));
         tableColumnNote.setCellValueFactory(new PropertyValueFactory<ItemChecked, String>("note"));
+        //tableColumnChecked.setCellValueFactory(); //TODO USE THE CUSTOM ONE!
     }
 
     private void setUpListeners(){
