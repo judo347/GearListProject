@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseWithFXML.ui.PackingListsManagerController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796">
+        <items>
+          <AnchorPane>
+               <children>
+                  <VBox>
+                     <children>
+                        <ToolBar>
+                          <items>
+                            <Button mnemonicParsing="false" onAction="#newListBtnAction" text="New List" />
+                              <Button mnemonicParsing="false" onAction="#deleteListBtnAction" text="Delete List" />
+                          </items>
+                        </ToolBar>
+                        <ListView fx:id="packingListList" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0">
+               <children>
+                  <TableView fx:id="packingListTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="tableColumnNameOfItem" editable="false" maxWidth="145.0" minWidth="145.0" prefWidth="145.0" text="Name of Item" />
+                        <TableColumn fx:id="tableColumnWeight" editable="false" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" text="Weight (g)" />
+                        <TableColumn fx:id="tableColumnBrand" editable="false" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Brand" />
+                        <TableColumn fx:id="tableColumnModel" editable="false" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" text="Model" />
+                        <TableColumn fx:id="tableColumnPurchaseLocation" editable="false" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Purchase Location" />
+                        <TableColumn fx:id="tableColumnPrice" editable="false" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="Price (DKK)" />
+                        <TableColumn fx:id="tableColumnNote" editable="false" maxWidth="215.0" minWidth="215.0" prefWidth="215.0" text="Note" />
+                        <TableColumn fx:id="tableColumnCount" editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Count" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

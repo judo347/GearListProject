@@ -19,13 +19,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class PrimarySceneController implements Initializable{
+public class PrimaryController implements Initializable{
 
     @FXML private Button buttonNewItem;
     @FXML private Button buttonRefreshList;
     //Table columns
     @FXML private TableColumn<Item, String> tableColumnNameOfItem;
-    //private TableColumn<?, ?> tableColumnNameOfItem;
     @FXML private TableColumn<Item, String> tableColumnBrand;
     @FXML private TableColumn<Item, String> tableColumnCount;
     @FXML private TableColumn<Item, String> tableColumnModel;
@@ -41,6 +40,7 @@ public class PrimarySceneController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
 
         datamodel = new Datamodel();
+        setUpTableColumns();
         refreshList();
     }
 
@@ -50,26 +50,36 @@ public class PrimarySceneController implements Initializable{
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/baseWithFXML/ui/AddItemScene.fxml"));
             Parent root = (Parent) fxmlLoader.load();
-            AddItemController atc =fxmlLoader.getController();
+            AddItemController atc = fxmlLoader.getController();
             atc.setPsc(this);
 
-            openWindowAddItemHelper(root);
+            openWindowHelper(root, "Add New Item");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public void openPacketListManagerWindow(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/baseWithFXML/ui/PackingListsManager.fxml"));
+            Parent root = fxmlLoader.load();
+            PackingListsManagerController pmc = fxmlLoader.getController();
+            pmc.initialize(this);
+
+            openWindowHelper(root, "Packing List Manager");
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     /** Takes an loaded fxml file and creates the window. */
-    private void openWindowAddItemHelper(Parent root){
+    private void openWindowHelper(Parent root, String windowTitle){
 
         Stage addItemWindowScene = new Stage();
         //Specifies the modality for new window (connection with parent window)
         addItemWindowScene.initModality(Modality.WINDOW_MODAL);
-
-        //Specifies the owner Window(parent) for new window
-        //addItemWindowScene.initOwner(primaryStage); //TODO: HOW TO GET primaryStage OBJECT?
-
-        addItemWindowScene.setTitle("Add New Item");
+        addItemWindowScene.setTitle(windowTitle);
         addItemWindowScene.setScene(new Scene(root));
         addItemWindowScene.setResizable(false);
         addItemWindowScene.show();
@@ -77,7 +87,12 @@ public class PrimarySceneController implements Initializable{
 
     @FXML
     public void refreshList() {
+        //Filling table
+        tableData.setItems(datamodel.getDataList());
+    }
 
+    /** Done as initialization for the table. */
+    private void setUpTableColumns(){
         //Telling witch value from Item goes into witch Column
         tableColumnNameOfItem.setCellValueFactory(new PropertyValueFactory<Item, String>("nameOfItem"));
         tableColumnCount.setCellValueFactory(new PropertyValueFactory<Item, String>("count"));
@@ -87,9 +102,6 @@ public class PrimarySceneController implements Initializable{
         tableColumnPurchaseLocation.setCellValueFactory(new PropertyValueFactory<Item, String>("purchaseLocation"));
         tableColumnPrice.setCellValueFactory(new PropertyValueFactory<Item, String>("priceInDKK"));
         tableColumnNote.setCellValueFactory(new PropertyValueFactory<Item, String>("note"));
-
-        //Filling table
-        tableData.setItems(datamodel.getDataList());
     }
 
     @FXML

@@ -12,13 +12,25 @@ public class Datamodel {
     private ObservableList<Item> items;
     private OwnFileManager ofm;
     private int idCounter;
+    private ArrayList<PackingList> packingLists;
 
     public Datamodel() {
         items = FXCollections.observableArrayList();
+        packingLists = new ArrayList<>();
         ofm = new OwnFileManager();
+        tempTestTodoFillPackingList();
+
+        //TODO LOAD PACKINGLSITS
 
         items = ofm.fillObservableList(items);
         idCounter = getHighestIdFromList(items) + 1;
+    }
+
+    private void tempTestTodoFillPackingList(){
+        packingLists.add(new PackingList("Heloo 1"));
+        packingLists.add(new PackingList("Heloo 2"));
+        packingLists.add(new PackingList("Heloo 3"));
+        packingLists.add(new PackingList("Heloo 4"));
     }
 
     /** @return the highest id in the given list of items. */
@@ -68,5 +80,13 @@ public class Datamodel {
 
     public int getNextId(){
         return idCounter++;
+    }
+
+    public ArrayList<PackingList> getPackingLists() {
+        return packingLists;
+    }
+
+    public void addToPackingList(PackingList pl){
+        packingLists.add(pl);
     }
 }

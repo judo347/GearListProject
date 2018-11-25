@@ -23,7 +23,7 @@ public class AddItemController implements Initializable {
     @FXML private TextField textFieldWeightInGrams;
     @FXML private TextField textFieldNote;
 
-    private PrimarySceneController psc;
+    private PrimaryController psc;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -67,7 +67,7 @@ public class AddItemController implements Initializable {
         textFieldNote.clear();
     }
 
-    public void setPsc(PrimarySceneController psc) {
+    public void setPsc(PrimaryController psc) {
         this.psc = psc;
     }
 }

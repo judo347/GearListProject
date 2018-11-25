@@ -10,7 +10,7 @@ package baseWithFXML; /** SOURCES:
 
 //TODO: add hoverOverLabels to addItemWindow
 
-import baseWithFXML.ui.PrimarySceneController;
+import baseWithFXML.ui.PrimaryController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    //private static PrimarySceneController psc;
+    //private static PrimaryController psc;
 
     public static void main(String[] args) {
         launch(args);
@@ -31,7 +31,7 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/baseWithFXML/ui/PrimaryScene.fxml"));
             Parent root = loader.load();
-            PrimarySceneController psc = loader.getController();
+            PrimaryController psc = loader.getController();
 
             primaryStage.setOnCloseRequest(e -> psc.getDatamodel().saveList());
             primaryStage.setTitle("Gear List Application");
