@@ -11,15 +11,9 @@ package baseWithFXML; /** SOURCES:
 //TODO: add hoverOverLabels to addItemWindow
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
@@ -32,7 +26,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("/baseWithFXML/PrimaryScene.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/baseWithFXML/ui/PrimaryScene.fxml"));
 
             primaryStage.setTitle("Gear List Application");
             primaryStage.setScene(new Scene(root));

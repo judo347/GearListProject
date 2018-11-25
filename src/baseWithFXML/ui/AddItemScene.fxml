@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="450.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="baseWithFXML.AddItemController">
+<AnchorPane prefHeight="450.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="baseWithFXML.ui.AddItemController">
   <children>
     <Button fx:id="buttonAddItem" layoutX="216.0" layoutY="415.0" mnemonicParsing="false" onAction="#saveItemToFile" text="Add Item" />
     <Label fx:id="textLabelConfirmation" layoutX="14.0" layoutY="415.0" prefHeight="21.0" prefWidth="189.0" text="" />
