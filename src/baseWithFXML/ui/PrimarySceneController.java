@@ -23,41 +23,19 @@ import javafx.stage.Stage;
 
 public class PrimarySceneController implements Initializable{
 
-    @FXML
-    private Button buttonNewItem;
-
-    @FXML
-    private Button buttonRefreshList;
-
+    @FXML private Button buttonNewItem;
+    @FXML private Button buttonRefreshList;
     //Table columns
-    @FXML
-    private TableColumn<Item, String> tableColumnNameOfItem;
+    @FXML private TableColumn<Item, String> tableColumnNameOfItem;
     //private TableColumn<?, ?> tableColumnNameOfItem;
-
-    @FXML
-    private TableColumn<Item, String> tableColumnBrand;
-
-    @FXML
-    private TableColumn<Item, String> tableColumnCount;
-
-    @FXML
-    private TableColumn<Item, String> tableColumnModel;
-
-    @FXML
-    private TableColumn<Item, String> tableColumnNote;
-
-    @FXML
-    private TableColumn<Item, String> tableColumnPrice;
-
-    @FXML
-    private TableColumn<Item, String> tableColumnPurchaseLocation;
-
-    @FXML
-    private TableColumn<Item, String> tableColumnWeight;
-
-
-    @FXML
-    private TableView<Item> tableData;
+    @FXML private TableColumn<Item, String> tableColumnBrand;
+    @FXML private TableColumn<Item, String> tableColumnCount;
+    @FXML private TableColumn<Item, String> tableColumnModel;
+    @FXML private TableColumn<Item, String> tableColumnNote;
+    @FXML private TableColumn<Item, String> tableColumnPrice;
+    @FXML private TableColumn<Item, String> tableColumnPurchaseLocation;
+    @FXML private TableColumn<Item, String> tableColumnWeight;
+    @FXML private TableView<Item> tableData;
 
     //test
     private ObservableList<Item> data = FXCollections.observableArrayList(); //TODO: Maybe create when getting it returned?

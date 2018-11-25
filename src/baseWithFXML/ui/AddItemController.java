@@ -16,33 +16,15 @@ public class AddItemController implements Initializable {
 
     //private OwnFileManager ownFileManager; //reference to other class
 
-    @FXML
-    private Button buttonAddItem;
-
-    @FXML
-    private TextField textFieldNameOfItem;
-
-    @FXML
-    private TextField textFieldBrand;
-
-    @FXML
-    private TextField textFieldModel;
-
-    @FXML
-    private TextField textFieldPriceInDKK;
-
-    @FXML
-    private TextField textFieldPurchaseLocation;
-
-    @FXML
-    private TextField textFieldWeightInGrams;
-
-    @FXML
-    private TextField textFieldNote;
-
-    @FXML
-    private Label textLabelConfirmation;
-
+    @FXML private Button buttonAddItem;
+    @FXML private TextField textFieldNameOfItem;
+    @FXML private TextField textFieldBrand;
+    @FXML private TextField textFieldModel;
+    @FXML private TextField textFieldPriceInDKK;
+    @FXML private TextField textFieldPurchaseLocation;
+    @FXML private TextField textFieldWeightInGrams;
+    @FXML private TextField textFieldNote;
+    @FXML private Label textLabelConfirmation;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
