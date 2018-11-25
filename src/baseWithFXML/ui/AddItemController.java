@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class AddItemController implements Initializable {
@@ -24,7 +23,8 @@ public class AddItemController implements Initializable {
     @FXML private TextField textFieldPurchaseLocation;
     @FXML private TextField textFieldWeightInGrams;
     @FXML private TextField textFieldNote;
-    @FXML private Label textLabelConfirmation;
+
+    private PrimarySceneController psc;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,7 +50,6 @@ public class AddItemController implements Initializable {
 
         //Save strings to file
         OwnFileManager ofm = new OwnFileManager(); //New object from own class. For help with files.
-
         ofm.saveInformationToFile(item); //Saves the item to file
 
         //Clear text fields and print msg
@@ -62,10 +61,10 @@ public class AddItemController implements Initializable {
         textFieldPriceInDKK.clear();
         textFieldNote.clear();
 
-        textLabelConfirmation.setText("Item saved!"); //TODO: Display name of the saved item
-
+        psc.refreshList();
     }
 
-
-
+    public void setPsc(PrimarySceneController psc) {
+        this.psc = psc;
+    }
 }

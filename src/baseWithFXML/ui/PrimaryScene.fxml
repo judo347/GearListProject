@@ -19,14 +19,14 @@
           </ToolBar>
           <TableView fx:id="tableData" disable="false" focusTraversable="true" maxHeight="1.7976931348623157E308" tableMenuButtonVisible="false" visible="true" VBox.vgrow="ALWAYS">
             <columns>
-              <TableColumn fx:id="tableColumnNameOfItem" maxWidth="145.0" minWidth="145.0" prefWidth="145.0" text="Name of Item" />
-              <TableColumn fx:id="tableColumnWeight" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" text="Weight (g)" />
-              <TableColumn fx:id="tableColumnBrand" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Brand" />
-              <TableColumn fx:id="tableColumnModel" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" text="Model" />
-              <TableColumn fx:id="tableColumnPurchaseLocation" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Purchase Location" />
-              <TableColumn fx:id="tableColumnPrice" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="Price (DKK)" />
-              <TableColumn fx:id="tableColumnNote" maxWidth="215.0" minWidth="215.0" prefWidth="215.0" text="Note" />
-              <TableColumn fx:id="tableColumnCount" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Count" />
+              <TableColumn fx:id="tableColumnNameOfItem" editable="false" maxWidth="145.0" minWidth="145.0" prefWidth="145.0" text="Name of Item" />
+              <TableColumn fx:id="tableColumnWeight" editable="false" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" text="Weight (g)" />
+              <TableColumn fx:id="tableColumnBrand" editable="false" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Brand" />
+              <TableColumn fx:id="tableColumnModel" editable="false" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" text="Model" />
+              <TableColumn fx:id="tableColumnPurchaseLocation" editable="false" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Purchase Location" />
+              <TableColumn fx:id="tableColumnPrice" editable="false" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="Price (DKK)" />
+              <TableColumn fx:id="tableColumnNote" editable="false" maxWidth="215.0" minWidth="215.0" prefWidth="215.0" text="Note" />
+              <TableColumn fx:id="tableColumnCount" editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Count" />
             </columns>
           </TableView>
             <HBox prefHeight="30.0" VBox.vgrow="ALWAYS">

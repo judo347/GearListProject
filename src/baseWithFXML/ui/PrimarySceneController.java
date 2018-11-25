@@ -53,26 +53,34 @@ public class PrimarySceneController implements Initializable{
     public void openWindowAddItem(ActionEvent event) {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/baseWithFXML/ui/AddItemScene.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage addItemWindowScene = new Stage();
+            Parent root = (Parent) fxmlLoader.load();
+            AddItemController atc =fxmlLoader.getController();
+            atc.setPsc(this);
 
-            //Specifies the modality for new window (connection with parent window)
-            addItemWindowScene.initModality(Modality.WINDOW_MODAL);
-
-            //Specifies the owner Window(parent) for new window
-            //addItemWindowScene.initOwner(primaryStage); //TODO: HOW TO GET primaryStage OBJECT?
-
-            addItemWindowScene.setTitle("Add New Item");
-            addItemWindowScene.setScene(new Scene(root1));
-            addItemWindowScene.setResizable(false);
-            addItemWindowScene.show();
+            openWindowAddItemHelper(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /** Takes an loaded fxml file and creates the window. */
+    private void openWindowAddItemHelper(Parent root){
+
+        Stage addItemWindowScene = new Stage();
+        //Specifies the modality for new window (connection with parent window)
+        addItemWindowScene.initModality(Modality.WINDOW_MODAL);
+
+        //Specifies the owner Window(parent) for new window
+        //addItemWindowScene.initOwner(primaryStage); //TODO: HOW TO GET primaryStage OBJECT?
+
+        addItemWindowScene.setTitle("Add New Item");
+        addItemWindowScene.setScene(new Scene(root));
+        addItemWindowScene.setResizable(false);
+        addItemWindowScene.show();
+    }
+
     @FXML
-    void refreshList(ActionEvent event) {
+    public void refreshList() {
         //tableColumnNameOfItem.setText("Hello"); //TEMP
 
         OwnFileManager ofm = new OwnFileManager();
@@ -97,6 +105,5 @@ public class PrimarySceneController implements Initializable{
 
         //Filling table
         tableData.setItems(data);
-
     }
 }
