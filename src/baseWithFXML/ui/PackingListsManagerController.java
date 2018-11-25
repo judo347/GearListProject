@@ -29,7 +29,7 @@ public class PackingListsManagerController {
         this.pc = pc;
         setUpTableColumns();
         //Opdate listView
-        loadListView();
+        refreshListView();
         setUpListeners();
 
 
@@ -54,24 +54,29 @@ public class PackingListsManagerController {
     }
 
     private void doSomethingWhenClicked(){
+        packingListTable.getItems().clear();
+        //packingListTable.setItems(packingListList.getSelectionModel().getSelectedItem().getList(pc.getDatamodel().getDataListArrayList()));
+
         System.out.println("TRIGGERED");
         //TODO Change what is viewed in tableView
     }
 
-    private void loadListView(){
+    private void refreshListView(){
+        packingListList.getItems().clear();
         for (PackingList packingList : pc.getDatamodel().getPackingLists()) {
             packingListList.getItems().add(packingList);
         }
     }
 
-
     @FXML
     void newListBtnAction(ActionEvent event) {
-
+        pc.getDatamodel().addToPackingList(new PackingList("Temp name, rename me!"));
+        refreshListView();
     }
 
     @FXML
     void deleteListBtnAction(ActionEvent event) {
-
+        pc.getDatamodel().removeFromPackingList(packingListList.getSelectionModel().getSelectedItem());
+        refreshListView();
     }
 }

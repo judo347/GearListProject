@@ -78,6 +78,17 @@ public class Datamodel {
         return items;
     }
 
+    public ArrayList<Item> getDataListArrayList(){
+
+        ArrayList<Item> returnList = new ArrayList<>();
+
+        for (Item item : items) {
+            returnList.add(item);
+        }
+
+        return returnList;
+    }
+
     public int getNextId(){
         return idCounter++;
     }
@@ -88,5 +99,9 @@ public class Datamodel {
 
     public void addToPackingList(PackingList pl){
         packingLists.add(pl);
+    }
+
+    public void removeFromPackingList(PackingList pl){
+        packingLists.remove(pl);
     }
 }

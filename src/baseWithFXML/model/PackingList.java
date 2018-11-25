@@ -12,6 +12,38 @@ public class PackingList {
         itemIds = new ArrayList<>();
     }
 
+    /***/
+    public ArrayList<ItemChecked> getList(ArrayList<Item> fullItemsList){
+
+        ArrayList<Item> inputList = new ArrayList<>(fullItemsList);
+        ArrayList<ItemChecked> returnList = new ArrayList<>();
+
+        //Add items that has id matching
+        for (Item item : new ArrayList<>(inputList)) {
+            if(isItemOnList(item)){
+                returnList.add(new ItemChecked(item, true));
+                inputList.remove(item);
+            }
+        }
+
+        //Add the rest us ItemsChecked false
+        for (Item item : inputList) {
+            returnList.add(new ItemChecked(item, false));
+        }
+
+        return returnList;
+    }
+
+    /** @return true if the given items id is on this' id list. */
+    private boolean isItemOnList(Item item){
+        for (Integer itemId : itemIds) {
+            if(item.getId() == itemId)
+                return true;
+        }
+
+        return false;
+    }
+
     public String getName() {
         return name;
     }
