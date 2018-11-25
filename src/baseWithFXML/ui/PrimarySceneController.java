@@ -94,6 +94,12 @@ public class PrimarySceneController implements Initializable{
         tableData.setItems(datamodel.getDataList());
     }
 
+    @FXML
+    public void btnActionDeleteItem(){
+        datamodel.removeItem(tableData.getSelectionModel().getSelectedItem());
+        refreshList();
+    }
+
     public Datamodel getDatamodel() {
         return datamodel;
     }

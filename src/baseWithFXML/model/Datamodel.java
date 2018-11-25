@@ -36,6 +36,10 @@ public class Datamodel {
         ofm.saveInformationToFile(itemsList);
     }
 
+    public void removeItem(Item item){
+        items.remove(item);
+    }
+
     public void addItem(Item ... item){
         items.addAll(Arrays.asList(item));
     }
