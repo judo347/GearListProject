@@ -13,7 +13,7 @@ public class Item {
     private int id;
 
     //Is this one really needed?
-    public Item(String nameOfItem, String count, String weightInGrams, String brand, String model, String purchaseLocation, String priceInDKK, String note, int id, boolean checked) {
+    public Item(String nameOfItem, String count, String weightInGrams, String brand, String model, String purchaseLocation, String priceInDKK, String note, int id) {
         this.nameOfItem = nameOfItem;
         this.count = count;
         this.weightInGrams = weightInGrams;

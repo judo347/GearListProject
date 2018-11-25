@@ -1,5 +1,8 @@
 package baseWithFXML.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 
 public class PackingList {
@@ -13,7 +16,7 @@ public class PackingList {
     }
 
     /***/
-    public ArrayList<ItemChecked> getList(ArrayList<Item> fullItemsList){
+    public ObservableList<ItemChecked> getList(ArrayList<Item> fullItemsList){
 
         ArrayList<Item> inputList = new ArrayList<>(fullItemsList);
         ArrayList<ItemChecked> returnList = new ArrayList<>();
@@ -31,7 +34,7 @@ public class PackingList {
             returnList.add(new ItemChecked(item, false));
         }
 
-        return returnList;
+        return FXCollections.observableArrayList(returnList);
     }
 
     /** @return true if the given items id is on this' id list. */
