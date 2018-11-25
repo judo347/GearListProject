@@ -10,9 +10,10 @@ public class Item {
     private String purchaseLocation;
     private String priceInDKK;
     private String note;
+    private int id;
 
     //Is this one really needed?
-    public Item(String nameOfItem, String count, String weightInGrams, String brand, String model, String purchaseLocation, String priceInDKK, String note) {
+    public Item(String nameOfItem, String count, String weightInGrams, String brand, String model, String purchaseLocation, String priceInDKK, String note, int id, boolean checked) {
         this.nameOfItem = nameOfItem;
         this.count = count;
         this.weightInGrams = weightInGrams;
@@ -21,6 +22,7 @@ public class Item {
         this.purchaseLocation = purchaseLocation;
         this.priceInDKK = priceInDKK;
         this.note = note;
+        this.id = id;
     }
 
     public Item(){
@@ -32,9 +34,10 @@ public class Item {
         this.purchaseLocation = "";
         this.priceInDKK = "";
         this.note = "";
+        this.id = -1;
     }
 
-    //Help Method
+    //Help Method //TODO should replace the toString method
     public void printItemObj(){
         System.out.println("Name of Item: " + this.getNameOfItem());
         System.out.println("Count: " + this.getCount());
@@ -44,6 +47,7 @@ public class Item {
         System.out.println("Purchase Location: " + this.getPurchaseLocation());
         System.out.println("Price: " + this.getPriceInDKK());
         System.out.println("Note: " + this.getNote());
+        System.out.println("ID: " + this.getId());
     }
 
     /* TEMP BACKUP
@@ -94,6 +98,10 @@ public class Item {
         return note;
     }
 
+    public int getId() {
+        return id;
+    }
+
     //Setters
 
     public void setNameOfItem(String nameOfItem) {
@@ -126,5 +134,9 @@ public class Item {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

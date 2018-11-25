@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import baseWithFXML.model.Item;
-import baseWithFXML.utils.OwnFileManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,7 +34,7 @@ public class AddItemController implements Initializable {
 
     // When user click on buttonAddItem
     // this method will be called.
-    public void saveItemToFile(ActionEvent event) {
+    public void saveItemBtnAction(ActionEvent event) {
         //Strings from input in window
         Item item = new Item();
 
@@ -47,11 +46,18 @@ public class AddItemController implements Initializable {
         item.setPurchaseLocation(textFieldPurchaseLocation.getText());
         item.setPriceInDKK(textFieldPriceInDKK.getText());
         item.setNote(textFieldNote.getText());
+        item.setId(psc.getDatamodel().getNextId());
 
         //Add item to datamodel
         psc.getDatamodel().addItem(item);
 
-        //Clear text fields and print msg
+        clearTextFields();
+
+        psc.refreshList();
+    }
+
+    /** Clears all textFields. */
+    private void clearTextFields(){
         textFieldNameOfItem.clear();
         textFieldWeightInGrams.clear();
         textFieldBrand.clear();
@@ -59,8 +65,6 @@ public class AddItemController implements Initializable {
         textFieldPurchaseLocation.clear();
         textFieldPriceInDKK.clear();
         textFieldNote.clear();
-
-        psc.refreshList();
     }
 
     public void setPsc(PrimarySceneController psc) {

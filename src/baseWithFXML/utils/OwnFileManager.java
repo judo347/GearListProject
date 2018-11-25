@@ -32,12 +32,13 @@ public class OwnFileManager {
         }
     }
 
-    //<Name><WeightInGrams><Brand><Model><PurchaseLocation><PriceInDKK><Note> //7 items
+    //<Name><WeightInGrams><Brand><Model><PurchaseLocation><PriceInDKK><Note><id><isChecked> //7 items
     public String formatSaveString(Item item){
         String composed = "<" + item.getNameOfItem() + ">" + "<" + item.getCount() + ">" +
                           "<" + item.getWeightInGrams() + ">" + "<" + item.getBrand() + ">" +
                           "<" + item.getModel() + ">" + "<" + item.getPurchaseLocation() + ">" +
-                          "<" + item.getPriceInDKK() + ">" + "<" + item.getNote() + ">";
+                          "<" + item.getPriceInDKK() + ">" + "<" + item.getNote() + ">" +
+                          "<" + item.getId() + ">";
         return composed;
 
         //return item.getNameOfItem() + item.getWeightInGrams() + item.getBrand() + item.getModel() + item.getPurchaseLocation() + item.getNote(); //TEMP needs <> if used
@@ -78,6 +79,7 @@ public class OwnFileManager {
         System.out.println("The line: " + line); //TEMP
         int currentElement = 0;
         boolean toggle = false;
+        String tempId = "";
 
         for(int i = 0; i < line.length(); i++){
             //System.out.println(i + " : " + line.charAt(i)); //TEMP
@@ -106,9 +108,14 @@ public class OwnFileManager {
                         break;
                     case 8: tempItem.setNote(tempItem.getNote() + line.charAt(i));
                         break;
+                    case 9: tempId = tempId + line.charAt(i);
+                        break;
                 }
             }
         }
+
+        tempItem.setId(Integer.valueOf(tempId));
+
 
         tempItem.printItemObj(); //TEMP
         System.out.println("End of cutFormattedLineToItem"); //TEMP

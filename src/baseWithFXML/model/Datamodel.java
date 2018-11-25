@@ -11,12 +11,30 @@ public class Datamodel {
 
     private ObservableList<Item> items;
     private OwnFileManager ofm;
+    private int idCounter;
 
     public Datamodel() {
         items = FXCollections.observableArrayList();
         ofm = new OwnFileManager();
 
         items = ofm.fillObservableList(items);
+        idCounter = getHighestIdFromList(items) + 1;
+    }
+
+    /** @return the highest id in the given list of items. */
+    private int getHighestIdFromList(ObservableList<Item> list){
+
+        ArrayList<Item> itemsArray = new ArrayList<>();
+        for (Item item : list)
+            itemsArray.add(item);
+
+        int highestCounter = 0;
+        for (Item item : itemsArray) {
+            if(item.getId() > highestCounter)
+                highestCounter = item.getId();
+        }
+
+        return highestCounter;
     }
 
     private void loadFile(){
@@ -46,5 +64,9 @@ public class Datamodel {
 
     public ObservableList<Item> getDataList() {
         return items;
+    }
+
+    public int getNextId(){
+        return idCounter++;
     }
 }

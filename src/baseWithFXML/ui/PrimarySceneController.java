@@ -42,8 +42,6 @@ public class PrimarySceneController implements Initializable{
 
         datamodel = new Datamodel();
         refreshList();
-        // TODO (don't really need to do anything here).
-
     }
 
     // When user click on buttonAddItem
