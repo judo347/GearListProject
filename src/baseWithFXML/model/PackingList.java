@@ -16,7 +16,7 @@ public class PackingList {
     }
 
     /***/
-    public ObservableList<ItemChecked> getList(ArrayList<Item> fullItemsList){
+    public ObservableList<ItemChecked> getList(ObservableList<Item> fullItemsList){
 
         ArrayList<Item> inputList = new ArrayList<>(fullItemsList);
         ArrayList<ItemChecked> returnList = new ArrayList<>();
@@ -24,14 +24,14 @@ public class PackingList {
         //Add items that has id matching
         for (Item item : new ArrayList<>(inputList)) {
             if(isItemOnList(item)){
-                returnList.add(new ItemChecked(item, true));
+                returnList.add(new ItemChecked(item, true, this));
                 inputList.remove(item);
             }
         }
 
         //Add the rest us ItemsChecked false
         for (Item item : inputList) {
-            returnList.add(new ItemChecked(item, false));
+            returnList.add(new ItemChecked(item, false, this));
         }
 
         return FXCollections.observableArrayList(returnList);
@@ -45,6 +45,17 @@ public class PackingList {
         }
 
         return false;
+    }
+
+    /** Gets called when an item on this list changed checked state. */
+    public void itemHasBeenTriggered(ItemChecked item){
+        if(isItemOnList(item)){ //TODO BUGGED
+            for (Integer id : itemIds) {
+                if(id == item.getId())
+                    itemIds.remove(id);
+            }
+        }else
+            itemIds.add(item.getId());
     }
 
     public String getName() {

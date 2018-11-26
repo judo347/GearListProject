@@ -95,13 +95,13 @@ public class PrimaryController implements Initializable{
     private void setUpTableColumns(){
         //Telling witch value from Item goes into witch Column
         tableColumnNameOfItem.setCellValueFactory(new PropertyValueFactory<Item, String>("nameOfItem"));
-        tableColumnCount.setCellValueFactory(new PropertyValueFactory<Item, String>("count"));
         tableColumnWeight.setCellValueFactory(new PropertyValueFactory<Item, String>("weightInGrams"));
         tableColumnBrand.setCellValueFactory(new PropertyValueFactory<Item, String>("brand"));
         tableColumnModel.setCellValueFactory(new PropertyValueFactory<Item, String>("model"));
         tableColumnPurchaseLocation.setCellValueFactory(new PropertyValueFactory<Item, String>("purchaseLocation"));
         tableColumnPrice.setCellValueFactory(new PropertyValueFactory<Item, String>("priceInDKK"));
         tableColumnNote.setCellValueFactory(new PropertyValueFactory<Item, String>("note"));
+        tableColumnCount.setCellValueFactory(new PropertyValueFactory<Item, String>("count"));
     }
 
     @FXML
