@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PackingList {
 
@@ -65,5 +66,13 @@ public class PackingList {
     @Override
     public String toString() {
         return name;
+    }
+
+    public ArrayList<Integer> getItemIds() {
+        return itemIds;
+    }
+
+    public void addIdsToList(ArrayList<Integer> ids){
+        itemIds.addAll(ids);
     }
 }

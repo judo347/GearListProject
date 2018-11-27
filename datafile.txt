@@ -1,3 +1,5 @@
 <Rygsæk><><550><Osprey><Aether><SpejderSport><2300><65L Ret stor><0>
 <Kniv><><53><Opinel><N5><Gave><><Lille og praktisk><1>
 <Kikkert><><100><Bresser><N/a><Gave><><Amanda er dejlig og praktisk><2>
+#
+<Hello 2><1,0,2>

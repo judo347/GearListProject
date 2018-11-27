@@ -22,7 +22,7 @@ public class Datamodel {
 
         //TODO LOAD PACKINGLSITS
 
-        items = ofm.fillObservableList(items);
+        loadFile();
         idCounter = getHighestIdFromList(items) + 1;
     }
 
@@ -50,7 +50,8 @@ public class Datamodel {
     }
 
     private void loadFile(){
-
+        items = ofm.fillObservableList(items);
+        packingLists = ofm.loadPackingListsFromFile();
     }
 
     //TODO someway of removing an item.
@@ -64,6 +65,8 @@ public class Datamodel {
         }
 
         ofm.saveInformationToFile(itemsList);
+
+        ofm.savePackingLitsToFile(getPackingLists());
     }
 
     public void removeItem(Item item){
