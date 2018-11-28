@@ -1,18 +1,12 @@
 package baseWithFXML.ui;
 
-import baseWithFXML.model.Item;
 import baseWithFXML.model.ItemChecked;
 import baseWithFXML.model.PackingList;
-import baseWithFXML.utils.CheckBoxCellFactory;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class PackingListsManagerController {
@@ -30,6 +24,9 @@ public class PackingListsManagerController {
     @FXML private ListView<PackingList> packingListList;
     @FXML private TableView<ItemChecked> packingListTable;
 
+    @FXML private Label labelTotalWeight;
+    @FXML private Label labelTotalPrice;
+
     private PrimaryController pc;
 
     public void initialize(PrimaryController pc){
@@ -38,13 +35,6 @@ public class PackingListsManagerController {
         //Opdate listView
         refreshListView();
         setUpListeners();
-
-
-        //Set actionButton listeners to update listView on action.
-
-
-        //TableColumn selectCol = new TableColumn("Select");
-        //packingListTable.getColumns().add(selectCol);
     }
 
     /** Done as initialization for the table. */
@@ -59,10 +49,6 @@ public class PackingListsManagerController {
         tableColumnNote.setCellValueFactory(new PropertyValueFactory<ItemChecked, String>("note"));
         tableColumnCount.setCellValueFactory(new PropertyValueFactory<ItemChecked, String>("count"));
         tableColumnChecked.setCellValueFactory(new PropertyValueFactory<ItemChecked, String>("isChecked")); //TODO USE THE CUSTOM ONE!
-
-        //tableColumnChecked.addEventHandler(e -> System.out.println("Hello"));
-        //tableColumnChecked.widthProperty().addListener(e -> System.out.println("Hello"));
-        //tableColumnChecked.getColumns().addListener(e -> System.out.println("He"));
         tableColumnChecked.getColumns().addListener(new ListChangeListener<TableColumn<ItemChecked, ?>>() {
             @Override
             public void onChanged(Change<? extends TableColumn<ItemChecked, ?>> c) {
@@ -75,15 +61,21 @@ public class PackingListsManagerController {
         packingListList.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> doSomethingWhenClicked()));
     }
 
+    /** Calls the model and refreshes the stats shown. */
+    private void refreshStats(){
+        labelTotalPrice.setText(String.valueOf(getSelectedPackingList().getTotalPrice(pc.getDatamodel())) + " DKK");
+        labelTotalWeight.setText(String.valueOf(getSelectedPackingList().getTotalWeight(pc.getDatamodel())) + " grams");
+    }
+
     private void doSomethingWhenClicked(){
         //packingListTable.getItems().clear();
 
 
-        PackingList packingList = packingListList.getSelectionModel().getSelectedItem();
-        ObservableList<ItemChecked> itemsList = packingList.getList(pc.getDatamodel().getDataList());
+        PackingList packingList = getSelectedPackingList();
+        ObservableList<ItemChecked> itemsList = packingList.getFullList(pc.getDatamodel().getDataList());
         packingListTable.setItems(itemsList);
-
-        //packingListTable.setItems(packingListList.getSelectionModel().getSelectedItem().getList(pc.getDatamodel().getDataListArrayList()));
+        refreshStats();
+        //packingListTable.setItems(packingListList.getSelectionModel().getSelectedItem().getFullList(pc.getDatamodel().getDataListArrayList()));
 
         System.out.println("TRIGGERED");
         //TODO Change what is viewed in tableView
@@ -104,7 +96,11 @@ public class PackingListsManagerController {
 
     @FXML
     void deleteListBtnAction(ActionEvent event) {
-        pc.getDatamodel().removeFromPackingList(packingListList.getSelectionModel().getSelectedItem());
+        pc.getDatamodel().removeFromPackingList(getSelectedPackingList());
         refreshListView();
+    }
+
+    private PackingList getSelectedPackingList(){
+        return packingListList.getSelectionModel().getSelectedItem();
     }
 }

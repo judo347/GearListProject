@@ -50,19 +50,10 @@ public class Item {
         System.out.println("ID: " + this.getId());
     }
 
-    /* TEMP BACKUP
-    public void printItemObj(Item item){
-        System.out.println("Name of Item: " + item.getNameOfItem());
-        System.out.println("Count: " + item.getCount());
-        System.out.println("Weight: " + item.getWeightInGrams());
-        System.out.println("Brand: " + item.getBrand());
-        System.out.println("Model: " + item.getModel());
-        System.out.println("Purchase Location: " + item.getPurchaseLocation());
-        System.out.println("Price: " + item.getPriceInDKK());
-        System.out.println("Note: " + item.getNote());
+    /** @return a copy of this item. */
+    public Item getCopy(){
+        return new Item(nameOfItem, count, weightInGrams, brand, model, purchaseLocation, priceInDKK, note, id);
     }
-
-     */
 
     //Getters
 

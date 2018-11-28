@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 public class PackingList {
 
@@ -16,8 +16,8 @@ public class PackingList {
         itemIds = new ArrayList<>();
     }
 
-    /***/
-    public ObservableList<ItemChecked> getList(ObservableList<Item> fullItemsList){
+    /** @return a list of ItemChecked that contains all items, with the ones on this list checked. */
+    public ObservableList<ItemChecked> getFullList(ObservableList<Item> fullItemsList){
 
         ArrayList<Item> inputList = new ArrayList<>(fullItemsList);
         ArrayList<ItemChecked> returnList = new ArrayList<>();
@@ -36,6 +36,31 @@ public class PackingList {
         }
 
         return FXCollections.observableArrayList(returnList);
+    }
+
+    /** @return a list of the items on this list. */
+    public ArrayList<Item> getCheckedItemsList(List<Item> fullItemsList){
+
+        ArrayList<Item> inputList = new ArrayList<>(fullItemsList);
+        ArrayList<Item> returnList = new ArrayList<>();
+
+        //Add items that has id matching
+        for (Item item : new ArrayList<>(inputList)) {
+            if(isItemOnList(item)){
+                returnList.add(item.getCopy());
+                inputList.remove(item);
+            }
+        }
+
+        return returnList;
+    }
+
+    public int getTotalWeight(Datamodel datamodel){
+        return datamodel.getTotalWeight(getCheckedItemsList(datamodel.getDataList()));
+    }
+
+    public int getTotalPrice(Datamodel datamodel){
+        return datamodel.getTotalPrice(getCheckedItemsList(datamodel.getDataList()));
     }
 
     /** @return true if the given items id is on this' id list. */

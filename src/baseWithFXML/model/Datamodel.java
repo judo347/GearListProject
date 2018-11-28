@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Datamodel {
 
@@ -94,6 +95,10 @@ public class Datamodel {
 
     /** STATS: total weight. */
     public int getTotalWeight(){
+        return getTotalWeight(items);
+    }
+
+    public int getTotalWeight(List<Item> items){
         int totalWeight = 0;
 
         for (Item item : items) {
@@ -106,6 +111,10 @@ public class Datamodel {
 
     /** STATS: total price. */
     public int getTotalPrice(){
+        return getTotalPrice(items);
+    }
+
+    public int getTotalPrice(List<Item> items){
         int totalPrice = 0;
 
         for (Item item : items) {
