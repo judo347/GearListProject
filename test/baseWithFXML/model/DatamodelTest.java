@@ -49,5 +49,23 @@ public class DatamodelTest {
         assertEquals(numberOfItems + 2, datamodel.getNextId());
     }
 
+    @Test
+    public void removeItem01(){
+        int numberOfItems = 5;
 
+        Datamodel datamodel = new Datamodel(TestUtilities.getNumberOfItemsObs(numberOfItems), new ArrayList<>());
+
+        Item item = new Item();
+
+        datamodel.addItem(item);
+
+        assertEquals(numberOfItems + 1, datamodel.getDataList().size());
+        datamodel.removeItem(item);
+        assertEquals(numberOfItems, datamodel.getDataList().size());
+    }
+
+    @Test
+    public void addItem01(){
+
+    }
 }
