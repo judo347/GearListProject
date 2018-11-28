@@ -92,6 +92,30 @@ public class Datamodel {
         return returnList;
     }
 
+    /** STATS: total weight. */
+    public int getTotalWeight(){
+        int totalWeight = 0;
+
+        for (Item item : items) {
+            if(!item.getWeightInGrams().equals(""))
+                totalWeight += Integer.parseInt(item.getWeightInGrams());
+        }
+
+        return totalWeight;
+    }
+
+    /** STATS: total price. */
+    public int getTotalPrice(){
+        int totalPrice = 0;
+
+        for (Item item : items) {
+            if(!item.getPriceInDKK().equals(""))
+                totalPrice += Integer.parseInt(item.getPriceInDKK());
+        }
+
+        return totalPrice;
+    }
+
     public int getNextId(){
         return idCounter++;
     }

@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -23,6 +24,8 @@ public class PrimaryController implements Initializable{
 
     @FXML private Button buttonNewItem;
     @FXML private Button buttonRefreshList;
+    @FXML private Label labelTotalWeight;
+    @FXML private Label labelTotalPrice;
     //Table columns
     @FXML private TableColumn<Item, String> tableColumnNameOfItem;
     @FXML private TableColumn<Item, String> tableColumnBrand;
@@ -42,6 +45,13 @@ public class PrimaryController implements Initializable{
         datamodel = new Datamodel();
         setUpTableColumns();
         refreshList();
+        refreshStats();
+    }
+
+    /** Calls the model and refreshes the stats shown. */
+    private void refreshStats(){
+        labelTotalPrice.setText(String.valueOf(datamodel.getTotalPrice()) + " DKK");
+        labelTotalWeight.setText(String.valueOf(datamodel.getTotalWeight()) + " grams");
     }
 
     // When user click on buttonAddItem

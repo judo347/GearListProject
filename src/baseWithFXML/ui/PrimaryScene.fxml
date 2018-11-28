@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -33,9 +34,11 @@
           </TableView>
             <HBox prefHeight="30.0" VBox.vgrow="ALWAYS">
                <children>
-                <Label text="Current weight:" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total weight: " />
+                <Label fx:id="labelTotalWeight" text="x" />
                 <Line endX="-289.0" endY="-17.0" startX="-289.0" startY="12.0" />
-                <Label fx:id="labelCurrentWeight" text="Label" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total price: " />
+                <Label fx:id="labelTotalPrice" text="x" />
                 <Line endX="-145.0" endY="15.0" startX="-145.0" startY="-14.0" />
                </children>
             </HBox>

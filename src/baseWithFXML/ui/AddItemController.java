@@ -35,6 +35,10 @@ public class AddItemController implements Initializable {
     // When user click on buttonAddItem
     // this method will be called.
     public void saveItemBtnAction(ActionEvent event) {
+
+        //if(!isInputLegit()) //TODO DOES NOT WORK
+        //    return;
+
         //Strings from input in window
         Item item = new Item();
 
@@ -54,6 +58,25 @@ public class AddItemController implements Initializable {
         clearTextFields();
 
         psc.refreshList();
+    }
+
+    /** @return true if the input is valid. */
+    private boolean isInputLegit(){
+
+        String name = textFieldNameOfItem.getText();
+        String weight = textFieldWeightInGrams.getText();
+        String price = textFieldPriceInDKK.getText();
+
+        if (!(weight.equals("") && price.equals(""))) {
+            try {
+                Integer.parseInt(weight);
+                Integer.parseInt(price);
+            } catch (NumberFormatException e){
+                return false;
+            }
+        }
+
+        return name.length() >= 1;
     }
 
     /** Clears all textFields. */
