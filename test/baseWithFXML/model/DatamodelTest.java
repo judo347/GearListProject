@@ -16,7 +16,7 @@ public class DatamodelTest {
 
         Datamodel datamodel = new Datamodel(TestUtilities.getNumberOfItemsObs(numberOfItems), new ArrayList<>());
 
-        assertEquals(numberOfItems - 1, datamodel.getIdCounter());
+        assertEquals(numberOfItems - 1, datamodel.getCurrentHighestId());
     }
 
     @Test
@@ -26,7 +26,7 @@ public class DatamodelTest {
 
         Datamodel datamodel = new Datamodel(TestUtilities.getNumberOfItemsObs(numberOfItems), new ArrayList<>());
 
-        assertEquals(numberOfItems, datamodel.getIdCounter());
+        assertEquals(numberOfItems, datamodel.getCurrentHighestId());
     }
 
     @Test
@@ -35,8 +35,8 @@ public class DatamodelTest {
 
         Datamodel datamodel = new Datamodel(TestUtilities.getNumberOfItemsObs(numberOfItems), new ArrayList<>());
 
-        assertEquals(numberOfItems - 1, datamodel.getNextId());
         assertEquals(numberOfItems, datamodel.getNextId());
+        assertEquals(numberOfItems + 1, datamodel.getNextId());
     }
 
     @Test
@@ -45,7 +45,9 @@ public class DatamodelTest {
 
         Datamodel datamodel = new Datamodel(TestUtilities.getNumberOfItemsObs(numberOfItems), new ArrayList<>());
 
-        assertEquals(numberOfItems, datamodel.getNextId());
         assertEquals(numberOfItems + 1, datamodel.getNextId());
+        assertEquals(numberOfItems + 2, datamodel.getNextId());
     }
+
+
 }

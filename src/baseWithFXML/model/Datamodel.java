@@ -10,7 +10,7 @@ import java.util.List;
 public class Datamodel {
 
     private ObservableList<Item> items;
-    private int idCounter; //Used to determine the next id to give an item.
+    private int currentHighestId; //Used to determine the next id to give an item.
     private ArrayList<PackingList> packingLists;
 
     public Datamodel(ObservableList<Item> itemsList, ArrayList<PackingList> packingLists){
@@ -19,7 +19,7 @@ public class Datamodel {
         this.packingLists = packingLists;
         //tempTestTodoFillPackingList(); //TODO TEMP
 
-        idCounter = getHighestIdFromList(items);
+        currentHighestId = getHighestIdFromList(items);
     }
 
     public Datamodel(){
@@ -46,45 +46,16 @@ public class Datamodel {
         return highestCounter;
     }
 
+    /** Used to load both lists from the file. */
     private void loadFile(){
         items = OwnFileManager.loadItemsListFromFile();
         packingLists = OwnFileManager.loadPackingListsFromFile();
     }
 
-    /** Saves the list to a file. Should be called when the windows is closed. */
+    /** Saves the list to a file. Should be called when the main window is closed. */
     public void saveList(){
-
-        ArrayList<Item> itemsList = new ArrayList<>();
-        for (Item item : items) {
-            itemsList.add(item);
-        }
-
-        OwnFileManager.saveInformationToFile(itemsList);
-
+        OwnFileManager.saveInformationToFile(new ArrayList<>(items));
         OwnFileManager.savePackingLitsToFile(getPackingLists());
-    }
-
-    public void removeItem(Item item){
-        items.remove(item);
-    }
-
-    public void addItem(Item ... item){
-        items.addAll(Arrays.asList(item));
-    }
-
-    public ObservableList<Item> getDataList() {
-        return items;
-    }
-
-    public ArrayList<Item> getDataListArrayList(){
-
-        ArrayList<Item> returnList = new ArrayList<>();
-
-        for (Item item : items) {
-            returnList.add(item);
-        }
-
-        return returnList;
     }
 
     /** STATS: total weight. */
@@ -92,6 +63,7 @@ public class Datamodel {
         return getTotalWeight(items);
     }
 
+    /** STATS: total weight. */
     public int getTotalWeight(List<Item> items){
         int totalWeight = 0;
 
@@ -108,6 +80,7 @@ public class Datamodel {
         return getTotalPrice(items);
     }
 
+    /** STATS: total price. */
     public int getTotalPrice(List<Item> items){
         int totalPrice = 0;
 
@@ -119,23 +92,47 @@ public class Datamodel {
         return totalPrice;
     }
 
+    /** @return the id for the next item added to this list. */
     public int getNextId(){
-        return idCounter++;
+        return ++currentHighestId;
     }
+
+
+    //-----------ADD/REMOVE section----------
+    /** Removes the given items from the list. */
+    public void removeItem(Item ... item){
+        items.removeAll(Arrays.asList(item));
+    }
+
+    /** Adds the given items to the list. */
+    public void addItem(Item ... item){
+        items.addAll(Arrays.asList(item));
+    }
+
+    public void addToPackingList(PackingList ... pl){
+        packingLists.addAll(Arrays.asList(pl));
+    }
+
+    public void removeFromPackingList(PackingList pl){
+        packingLists.removeAll(Arrays.asList(pl));
+    }
+
+
+    //----------GETTERS/SETTERS---------
 
     public ArrayList<PackingList> getPackingLists() {
         return packingLists;
     }
 
-    public void addToPackingList(PackingList pl){
-        packingLists.add(pl);
+    public ArrayList<Item> getDataListArrayList(){
+        return new ArrayList<>(items);
     }
 
-    public void removeFromPackingList(PackingList pl){
-        packingLists.remove(pl);
+    public ObservableList<Item> getDataList() {
+        return items;
     }
 
-    public int getIdCounter() {
-        return idCounter;
+    public int getCurrentHighestId() {
+        return currentHighestId;
     }
 }
