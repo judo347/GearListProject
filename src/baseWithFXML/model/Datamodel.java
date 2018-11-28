@@ -19,7 +19,7 @@ public class Datamodel {
         this.packingLists = packingLists;
         //tempTestTodoFillPackingList(); //TODO TEMP
 
-        idCounter = getHighestIdFromList(items) + 1;
+        idCounter = getHighestIdFromList(items);
     }
 
     public Datamodel(){
@@ -50,8 +50,6 @@ public class Datamodel {
         items = OwnFileManager.loadItemsListFromFile();
         packingLists = OwnFileManager.loadPackingListsFromFile();
     }
-
-    //TODO someway of removing an item.
 
     /** Saves the list to a file. Should be called when the windows is closed. */
     public void saveList(){
@@ -135,5 +133,9 @@ public class Datamodel {
 
     public void removeFromPackingList(PackingList pl){
         packingLists.remove(pl);
+    }
+
+    public int getIdCounter() {
+        return idCounter;
     }
 }
