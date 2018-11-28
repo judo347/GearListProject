@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class OwnFileManager {
 
-    private String filename = "datafile.txt";
+    private static String filename = "datafile.txt";
 
-    public void saveInformationToFile(ArrayList<Item> items){
+    public static void saveInformationToFile(ArrayList<Item> items){
 
         try{
             File file = new File(filename);
@@ -35,7 +35,7 @@ public class OwnFileManager {
         }
     }
 
-    public void savePackingLitsToFile(ArrayList<PackingList> packingLists){
+    public static void savePackingLitsToFile(ArrayList<PackingList> packingLists){
 
         try{
             File file = new File(filename);
@@ -59,7 +59,7 @@ public class OwnFileManager {
     }
 
     //<NameOfList><x,y,e,d,g,h>
-    private String formatPackingListSaveString(PackingList packingList){
+    private static String formatPackingListSaveString(PackingList packingList){
         StringBuilder sb = new StringBuilder();
         sb.append("<").append(packingList.getName()).append("><");
 
@@ -74,7 +74,7 @@ public class OwnFileManager {
     }
 
     //<Name><WeightInGrams><Brand><Model><PurchaseLocation><PriceInDKK><Note><id><isChecked> //7 items
-    public String formatSaveString(Item item){
+    private static String formatSaveString(Item item){
         String composed = "<" + item.getNameOfItem() + ">" + "<" + item.getCount() + ">" +
                           "<" + item.getWeightInGrams() + ">" + "<" + item.getBrand() + ">" +
                           "<" + item.getModel() + ">" + "<" + item.getPurchaseLocation() + ">" +
@@ -85,7 +85,7 @@ public class OwnFileManager {
         //return item.getNameOfItem() + item.getWeightInGrams() + item.getBrand() + item.getModel() + item.getPurchaseLocation() + item.getNote(); //TEMP needs <> if used
     }
 
-    public ArrayList<PackingList> loadPackingListsFromFile(){
+    public static ArrayList<PackingList> loadPackingListsFromFile(){
 
         ArrayList<PackingList> packingLists = new ArrayList<>();
 
@@ -110,7 +110,7 @@ public class OwnFileManager {
         return packingLists;
     }
 
-    public ObservableList<Item> fillObservableList(ObservableList<Item> data){
+    public static ObservableList<Item> loadItemsListFromFile(){
 
         ArrayList<Item> itemArray = new ArrayList<Item>(); //Creating array of Item for lines from file
 
@@ -132,12 +132,10 @@ public class OwnFileManager {
         }
 
         //Convert string to ObservableList
-        data = FXCollections.observableList(itemArray); //WORKING?
-
-        return data;
+        return FXCollections.observableList(itemArray); //WORKING?
     }
 
-    private PackingList cutFormattedLineToPacklingList(String line){
+    private static PackingList cutFormattedLineToPacklingList(String line){
 
         ArrayList<Integer> ids = new ArrayList<>();
         String listName = "";
@@ -173,7 +171,7 @@ public class OwnFileManager {
 
     //TODO: TEST (WORKING?)
     //TODO: MISSING COUNT IN ADD NEW ITEM WINDOW
-    public Item cutFormattedLineToItem(String line, Item tempItem){
+    public static Item cutFormattedLineToItem(String line, Item tempItem){
 
         //System.out.println("Start of cutFormattedLineToItem"); //TEMP
         //System.out.println("The line: " + line); //TEMP

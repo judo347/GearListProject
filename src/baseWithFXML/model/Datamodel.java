@@ -1,7 +1,6 @@
 package baseWithFXML.model;
 
 import baseWithFXML.utils.OwnFileManager;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
@@ -11,22 +10,23 @@ import java.util.List;
 public class Datamodel {
 
     private ObservableList<Item> items;
-    private OwnFileManager ofm;
-    private int idCounter;
+    private int idCounter; //Used to determine the next id to give an item.
     private ArrayList<PackingList> packingLists;
 
-    public Datamodel() {
-        items = FXCollections.observableArrayList();
-        packingLists = new ArrayList<>();
-        ofm = new OwnFileManager();
-        tempTestTodoFillPackingList();
+    public Datamodel(ObservableList<Item> itemsList, ArrayList<PackingList> packingLists){
 
-        //TODO LOAD PACKINGLSITS
+        this.items = itemsList;
+        this.packingLists = packingLists;
+        //tempTestTodoFillPackingList(); //TODO TEMP
 
-        loadFile();
         idCounter = getHighestIdFromList(items) + 1;
     }
 
+    public Datamodel(){
+        this(OwnFileManager.loadItemsListFromFile(), OwnFileManager.loadPackingListsFromFile());
+    }
+
+    /** TODO: Temp function. */
     private void tempTestTodoFillPackingList(){
         packingLists.add(new PackingList("Heloo 1"));
         packingLists.add(new PackingList("Heloo 2"));
@@ -35,14 +35,10 @@ public class Datamodel {
     }
 
     /** @return the highest id in the given list of items. */
-    private int getHighestIdFromList(ObservableList<Item> list){
-
-        ArrayList<Item> itemsArray = new ArrayList<>();
-        for (Item item : list)
-            itemsArray.add(item);
+    private int getHighestIdFromList(List<Item> list){
 
         int highestCounter = 0;
-        for (Item item : itemsArray) {
+        for (Item item : list) {
             if(item.getId() > highestCounter)
                 highestCounter = item.getId();
         }
@@ -51,8 +47,8 @@ public class Datamodel {
     }
 
     private void loadFile(){
-        items = ofm.fillObservableList(items);
-        packingLists = ofm.loadPackingListsFromFile();
+        items = OwnFileManager.loadItemsListFromFile();
+        packingLists = OwnFileManager.loadPackingListsFromFile();
     }
 
     //TODO someway of removing an item.
@@ -65,9 +61,9 @@ public class Datamodel {
             itemsList.add(item);
         }
 
-        ofm.saveInformationToFile(itemsList);
+        OwnFileManager.saveInformationToFile(itemsList);
 
-        ofm.savePackingLitsToFile(getPackingLists());
+        OwnFileManager.savePackingLitsToFile(getPackingLists());
     }
 
     public void removeItem(Item item){
