@@ -92,6 +92,7 @@ public class PackingListsManagerController {
     void newListBtnAction(ActionEvent event) {
         pc.getDatamodel().addToPackingList(new PackingList("Temp name, rename me!"));
         refreshListView();
+        packingListList.getSelectionModel().selectLast();
     }
 
     @FXML
