@@ -1,5 +1,7 @@
-<Rygsæk><><550><Osprey><Aether><SpejderSport><2300><65L Ret stor><0>
-<Kniv><><53><Opinel><N5><Gave><><Lille og praktisk><1>
-<Kikkert><><100><Bresser><N/a><Gave><><Amanda er dejlig og praktisk><2>
+<Backpack><><550><Osprey><Aether><SpejderSport><2300><65L - pretty big.><0>
+<Knife><><53><Opinel><N5><Gift><><Small and practical.><1>
+<Binoculars><><100><Bresser><Travel><Gift from GF><399><10x25><2>
+<Water bladder><><><Camelbak><UnBottle><><259><3L><3>
+<Gel burner><><16><Trangia><><basecampgear.co.uk><67><Burns solid fuels.><4>
 #
-<Hello 2><1,0,2>
+<Basic 3 day list><1,0,2>
