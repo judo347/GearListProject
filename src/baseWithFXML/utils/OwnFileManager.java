@@ -179,11 +179,14 @@ public class OwnFileManager {
     static ArrayList<String> getElements(String line){
         ArrayList<String> elements = new ArrayList<String>(Arrays.asList(line.split("<")));
 
-        //Remove empty elements
-        for (String element : new ArrayList<>(elements)) {
+        //Remove first empty element
+        elements.remove(0);
+
+        /*for (String element : new ArrayList<>(elements)) {
             if(element.equals(""))
                 elements.remove(element);
-        }
+        }*/
+
 
         //Remove last char in each string: >
         for (String element : new ArrayList<>(elements)) {
@@ -203,7 +206,21 @@ public class OwnFileManager {
     /** @return an item created from the given string. */
     static Item cutFormattedLineToItem(String line){
 
+        ArrayList<String> elements = getElements(line);
+
         Item tempItem = new Item();
+        tempItem.setNameOfItem(elements.get(0));
+        tempItem.setCount(elements.get(1));
+        tempItem.setWeightInGrams(elements.get(2));
+        tempItem.setBrand(elements.get(3));
+        tempItem.setModel(elements.get(4));
+        tempItem.setPurchaseLocation(elements.get(5));
+        tempItem.setPriceInDKK(elements.get(6));
+        tempItem.setNote(elements.get(7));
+        tempItem.setId(Integer.valueOf(elements.get(8)));
+
+
+        /*
         int currentElement = 0;
         boolean toggle = false;
         String tempId = "";
@@ -240,7 +257,7 @@ public class OwnFileManager {
             }
         }
 
-        tempItem.setId(Integer.valueOf(tempId));
+        tempItem.setId(Integer.valueOf(tempId));*/
 
         return tempItem;
     }
