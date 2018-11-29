@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import java.io.*;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class OwnFileManager {
 
@@ -139,10 +140,15 @@ public class OwnFileManager {
     /** @return a packlingList created from the given string. */
     static PackingList cutFormattedLineToPacklingList(String line){
 
-        //Cut into elements
-        String[] elemenets = line.split("<"); //TODO This contains /n strings?!??!
-        String name = elemenets[1].substring(0, elemenets[1].length() -1);
-        String idsString = elemenets[2].substring(0, elemenets[2].length() -1);
+        ArrayList<String> elements = getElements(line);
+        if(elements.size() > 2)
+            throw new IllegalStateException();
+
+        if(elements.size() == 1)
+            return new PackingList(elements.get(0));
+
+        String name = elements.get(0);
+        String idsString = elements.get(1);
 
         //Get individual ids
         ArrayList<Integer> ids = new ArrayList<>();
@@ -164,6 +170,32 @@ public class OwnFileManager {
         PackingList packingList = new PackingList(name);
         packingList.addIdsToList(ids);
         return packingList;
+    }
+
+
+
+    /** Take <xx><yyy><zz> -> xx yy zz.
+     * @return an arrayList of strings from the given line.*/
+    static ArrayList<String> getElements(String line){
+        ArrayList<String> elements = new ArrayList<String>(Arrays.asList(line.split("<")));
+
+        //Remove empty elements
+        for (String element : new ArrayList<>(elements)) {
+            if(element.equals(""))
+                elements.remove(element);
+        }
+
+        //Remove last char in each string: >
+        for (String element : new ArrayList<>(elements)) {
+            String tempString = element.replaceAll(">", "");
+
+            elements.remove(element);
+            elements.add(tempString);
+        }
+
+        //TODO USE THIS TO REWORK CUT METHODS
+
+        return elements;
     }
 
     //TODO: TEST (WORKING?)
