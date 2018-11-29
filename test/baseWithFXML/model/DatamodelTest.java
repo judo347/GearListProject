@@ -50,7 +50,7 @@ public class DatamodelTest {
     }
 
     @Test
-    public void removeItem01(){
+    public void removeItemAndAddItem01(){
         int numberOfItems = 5;
 
         Datamodel datamodel = new Datamodel(TestUtilities.getNumberOfItemsObs(numberOfItems), new ArrayList<>());
@@ -64,8 +64,5 @@ public class DatamodelTest {
         assertEquals(numberOfItems, datamodel.getDataList().size());
     }
 
-    @Test
-    public void addItem01(){
 
-    }
 }

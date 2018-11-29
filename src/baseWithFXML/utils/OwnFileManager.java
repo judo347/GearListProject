@@ -12,6 +12,7 @@ public class OwnFileManager {
 
     private static String filename = "datafile.txt";
 
+    /** Saves the given items list to a file. */
     public static void saveInformationToFile(ArrayList<Item> items){
 
         try{
@@ -19,7 +20,6 @@ public class OwnFileManager {
 
             FileWriter fw = new FileWriter(file, false); //Appending
             BufferedWriter bw = new BufferedWriter(fw); //Better performance
-            //bw = null; //Clears the bw?
 
             //Print section
             for (Item item : items){
@@ -35,6 +35,7 @@ public class OwnFileManager {
         }
     }
 
+    /** Saves the given packingList to a file. */
     public static void savePackingLitsToFile(ArrayList<PackingList> packingLists){
 
         try{
@@ -52,20 +53,21 @@ public class OwnFileManager {
             }
             bw.flush(); //clears bw
             bw.close(); //Close file
+
         } catch (IOException e) {
             System.out.println("Failed to open and write to file:");
             e.printStackTrace();
         }
     }
 
-    //<NameOfList><x,y,e,d,g,h>
+    /** @return a formatted string created from the given packingList.
+     * The format is: <NameOfList><id1,id2,id3,id4,id5,id6>*/
     private static String formatPackingListSaveString(PackingList packingList){
         StringBuilder sb = new StringBuilder();
         sb.append("<").append(packingList.getName()).append("><");
 
-        for (Integer id : packingList.getItemIds()) {
+        for (Integer id : packingList.getItemIds())
             sb.append(id).append(",");
-        }
 
         sb.deleteCharAt(sb.length() - 1);
         sb.append(">");
@@ -73,7 +75,8 @@ public class OwnFileManager {
         return sb.toString();
     }
 
-    //<Name><WeightInGrams><Brand><Model><PurchaseLocation><PriceInDKK><Note><id><isChecked> //7 items
+    /** @return a formatted string created from the given item.
+     * The format is: <Name><WeightInGrams><Brand><Model><PurchaseLocation><PriceInDKK><Note><id>*/
     private static String formatSaveString(Item item){
         String composed = "<" + item.getNameOfItem() + ">" + "<" + item.getCount() + ">" +
                           "<" + item.getWeightInGrams() + ">" + "<" + item.getBrand() + ">" +
@@ -81,10 +84,9 @@ public class OwnFileManager {
                           "<" + item.getPriceInDKK() + ">" + "<" + item.getNote() + ">" +
                           "<" + item.getId() + ">";
         return composed;
-
-        //return item.getNameOfItem() + item.getWeightInGrams() + item.getBrand() + item.getModel() + item.getPurchaseLocation() + item.getNote(); //TEMP needs <> if used
     }
 
+    /** @return an ArrayList of packingLists loaded from the file. */
     public static ArrayList<PackingList> loadPackingListsFromFile(){
 
         ArrayList<PackingList> packingLists = new ArrayList<>();
@@ -92,10 +94,10 @@ public class OwnFileManager {
         File file = new File(filename);
 
         //Fill array with packing lists from file
-        //Fill array with items from file
         try (BufferedReader br = new BufferedReader(new FileReader(file))){
             String line;
 
+            //traverse the file to find the start of the packinglists
             while((line = br.readLine()) != null && !line.equals("#"));
 
             while((line = br.readLine()) != null){
@@ -110,59 +112,53 @@ public class OwnFileManager {
         return packingLists;
     }
 
+    /**@return an ArrayList of items loaded from the file. */
     public static ObservableList<Item> loadItemsListFromFile(){
 
-        ArrayList<Item> itemArray = new ArrayList<Item>(); //Creating array of Item for lines from file
+        ArrayList<Item> itemArray = new ArrayList<Item>();
 
         File file = new File(filename);
 
         //Fill array with items from file
         try (BufferedReader br = new BufferedReader(new FileReader(file))){
+
             String line;
-            while((line = br.readLine()) != null && !line.equals("#")){
-                //System.out.println(line); //TEMP
-                Item tempItem = new Item();
-                tempItem = cutFormattedLineToItem(line, tempItem);
-                //tempItem.printItemObj(); //TEMP
-                itemArray.add(tempItem);
-            }
+            while((line = br.readLine()) != null && !line.equals("#"))
+                itemArray.add(cutFormattedLineToItem(line, new Item()));
+
         }catch (IOException e) {
             System.out.println("Failed to open and read file:");
             e.printStackTrace();
         }
 
         //Convert string to ObservableList
-        return FXCollections.observableList(itemArray); //WORKING?
+        return FXCollections.observableList(itemArray);
     }
 
+    /** @return a packlingList created from the given string. */
     private static PackingList cutFormattedLineToPacklingList(String line){
-
-        ArrayList<Integer> ids = new ArrayList<>();
-        String listName = "";
 
         //Cut into elements
         String[] elemenets = line.split("<"); //TODO This contains /n strings?!??!
-        //String name = elemenets[1];
-        //name.replace(">", "");
         String name = elemenets[1].substring(0, elemenets[1].length() -1);
         String idsString = elemenets[2].substring(0, elemenets[2].length() -1);
 
-        System.out.println(idsString);
-
-        String value = "";
+        //Get individual ids
+        ArrayList<Integer> ids = new ArrayList<>();
+        String valueHolder = "";
         int counter = 0;
         while (counter < idsString.length()){
 
             if(idsString.charAt(counter) == ','){
-                ids.add(Integer.parseInt(value));
-                value = "";
+                ids.add(Integer.parseInt(valueHolder));
+                valueHolder = "";
             }else{
-                value = value + idsString.charAt(counter);
+                valueHolder = valueHolder + idsString.charAt(counter);
             }
 
             counter++;
         }
-        ids.add(Integer.parseInt(value));
+        ids.add(Integer.parseInt(valueHolder));
 
         PackingList packingList = new PackingList(name);
         packingList.addIdsToList(ids);
@@ -171,16 +167,14 @@ public class OwnFileManager {
 
     //TODO: TEST (WORKING?)
     //TODO: MISSING COUNT IN ADD NEW ITEM WINDOW
-    public static Item cutFormattedLineToItem(String line, Item tempItem){
+    /** @return an item created from the given string. */
+    private static Item cutFormattedLineToItem(String line, Item tempItem){
 
-        //System.out.println("Start of cutFormattedLineToItem"); //TEMP
-        //System.out.println("The line: " + line); //TEMP
         int currentElement = 0;
         boolean toggle = false;
         String tempId = "";
 
         for(int i = 0; i < line.length(); i++){
-            //System.out.println(i + " : " + line.charAt(i)); //TEMP
             if(line.charAt(i) == '<') {
                 currentElement++;
                 i++;
@@ -213,10 +207,6 @@ public class OwnFileManager {
         }
 
         tempItem.setId(Integer.valueOf(tempId));
-
-
-        tempItem.printItemObj(); //TEMP
-        System.out.println("End of cutFormattedLineToItem"); //TEMP
 
         return tempItem;
     }
