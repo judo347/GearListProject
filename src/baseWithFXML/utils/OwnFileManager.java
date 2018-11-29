@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class OwnFileManager {
@@ -62,7 +63,7 @@ public class OwnFileManager {
 
     /** @return a formatted string created from the given packingList.
      * The format is: <NameOfList><id1,id2,id3,id4,id5,id6>*/
-    private static String formatPackingListSaveString(PackingList packingList){
+    static String formatPackingListSaveString(PackingList packingList){
         StringBuilder sb = new StringBuilder();
         sb.append("<").append(packingList.getName()).append("><");
 
@@ -77,7 +78,7 @@ public class OwnFileManager {
 
     /** @return a formatted string created from the given item.
      * The format is: <Name><WeightInGrams><Brand><Model><PurchaseLocation><PriceInDKK><Note><id>*/
-    private static String formatSaveString(Item item){
+    static String formatSaveString(Item item){
         String composed = "<" + item.getNameOfItem() + ">" + "<" + item.getCount() + ">" +
                           "<" + item.getWeightInGrams() + ">" + "<" + item.getBrand() + ">" +
                           "<" + item.getModel() + ">" + "<" + item.getPurchaseLocation() + ">" +
@@ -124,7 +125,7 @@ public class OwnFileManager {
 
             String line;
             while((line = br.readLine()) != null && !line.equals("#"))
-                itemArray.add(cutFormattedLineToItem(line, new Item()));
+                itemArray.add(cutFormattedLineToItem(line));
 
         }catch (IOException e) {
             System.out.println("Failed to open and read file:");
@@ -136,7 +137,7 @@ public class OwnFileManager {
     }
 
     /** @return a packlingList created from the given string. */
-    private static PackingList cutFormattedLineToPacklingList(String line){
+    static PackingList cutFormattedLineToPacklingList(String line){
 
         //Cut into elements
         String[] elemenets = line.split("<"); //TODO This contains /n strings?!??!
@@ -168,8 +169,9 @@ public class OwnFileManager {
     //TODO: TEST (WORKING?)
     //TODO: MISSING COUNT IN ADD NEW ITEM WINDOW
     /** @return an item created from the given string. */
-    private static Item cutFormattedLineToItem(String line, Item tempItem){
+    static Item cutFormattedLineToItem(String line){
 
+        Item tempItem = new Item();
         int currentElement = 0;
         boolean toggle = false;
         String tempId = "";
@@ -210,4 +212,6 @@ public class OwnFileManager {
 
         return tempItem;
     }
+
+    //--------METHOD GETTERS FOR TESTING------------
 }
