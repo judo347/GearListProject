@@ -18,7 +18,7 @@ The program consists of three windows. The first window you will meet is the gea
 
 When pressing the *New Item* button the window pictured below will appear. This window gives you the option to type in the details of an item and add it to your gear list.
 
-![](/img/additemwindow.png)
+![](/img/addItemWindow.png)
 
 When pressing the *Open List Manager* button in the main window, the window pictured below will appear. This window is where you manage your packing lists. The left side of the window shows a list with all your packing lists and above that is buttons for adding and removing lists. The right side of the window displays your full gear list and by checking the box. To the right of each item is a checkbox used to choose which items are on the selected packing list. At the bottom, we again find a panel of statistics but this time only for the checked items within the selected list.
 
