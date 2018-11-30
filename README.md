@@ -14,19 +14,19 @@ When it comes to packing for a hiking trip, or other activities that require gea
 
 The program consists of three windows. The first window you will meet is the gear list window seen in the image below. This window contains a full list of your added gear and provides two buttons one for adding items and one for remove the selected item. At the bottom of the window is a panel containing different statistics about your gear list. 
 
-![](.\img\mainwindow.png)
+![](/img/mainwindow.png)
 
 When pressing the *New Item* button the window pictured below will appear. This window gives you the option to type in the details of an item and add it to your gear list.
 
-![](.\img\additemwindow.png)
+![](/img/additemwindow.png)
 
 When pressing the *Open List Manager* button in the main window, the window pictured below will appear. This window is where you manage your packing lists. The left side of the window shows a list with all your packing lists and above that is buttons for adding and removing lists. The right side of the window displays your full gear list and by checking the box. To the right of each item is a checkbox used to choose which items are on the selected packing list. At the bottom, we again find a panel of statistics but this time only for the checked items within the selected list.
 
-![](.\img\packinglistmanager.png)
+![](/img/packinglistmanager.png)
 
 #### Future work
 
-**Checklist **
+**Checklist**
 
 - The Packing List Manager will in the future provide two options for it to work as a checklist for when it comes to packing. You have the option to print it out or open another window that will act as a checklist.
 
