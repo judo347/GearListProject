@@ -4,23 +4,31 @@
 
 ### The general concept
 
-bnlag blag blag..... introduction.....
+**Purpose**
+
+When it comes to packing for a hiking trip, or other activities that require gear, we often repeat the same process. We often use the same list with a few modifications and this lead to having a lot of lists laying around, and this is where this program comes in. It holds a list of your gear with information about each item and allows you to create packing lists base upon your gear. In this way, you have everything involving packing in the same platform with the ability to print checklists and see how much your pack is going to weigh. 
 
 
 
-#### The program
+### The program
 
-The program consists of three windows. The first window you will meet is the gear list window seen in the image below. This window contains a full list of your added gear, and provides two buttons one for adding items and one for remove the selected item. At the bottom of the window is a panel containing different statistics about your gear list. 
+The program consists of three windows. The first window you will meet is the gear list window seen in the image below. This window contains a full list of your added gear and provides two buttons one for adding items and one for remove the selected item. At the bottom of the window is a panel containing different statistics about your gear list. 
 
 ![](.\img\mainwindow.png)
 
-When pressing the *New Item* button the window pictured below will appear. This window enables you to type in the details of an item and add it to your gear list.
+When pressing the *New Item* button the window pictured below will appear. This window gives you the option to type in the details of an item and add it to your gear list.
 
 ![](.\img\additemwindow.png)
 
-When pressing the *Open List Manager* button in the main window, the window pictured below will appear. This window is where you manage your packing lists. The left side of the window shows a list with all our packing lists and the above that is buttons for adding and removing lists. The right side of the window displays your full gear list and by checking the box on the right side of the items will add the items to the current selected list. At the bottom we again find a panel of statistics but this time only for the checked items within the selected list.
+When pressing the *Open List Manager* button in the main window, the window pictured below will appear. This window is where you manage your packing lists. The left side of the window shows a list with all your packing lists and above that is buttons for adding and removing lists. The right side of the window displays your full gear list and by checking the box. To the right of each item is a checkbox used to choose which items are on the selected packing list. At the bottom, we again find a panel of statistics but this time only for the checked items within the selected list.
 
 ![](.\img\packinglistmanager.png)
+
+#### Future work
+
+**Checklist **
+
+- The Packing List Manager will in the future provide two options for it to work as a checklist for when it comes to packing. You have the option to print it out or open another window that will act as a checklist.
 
 
 
