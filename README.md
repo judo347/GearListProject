@@ -2,7 +2,7 @@
 
 *This project is still in its early stage of development and is far from done. The main concept is established for now and is explained in this document.*
 
-### The general concept
+## The general concept
 
 **Purpose**
 
@@ -10,7 +10,7 @@ When it comes to packing for a hiking trip, or other activities that require gea
 
 
 
-### The program
+## The program
 
 The program consists of three windows. The first window you will meet is the gear list window seen in the image below. This window contains a full list of your added gear and provides two buttons one for adding items and one for remove the selected item. At the bottom of the window is a panel containing different statistics about your gear list. 
 
@@ -24,7 +24,7 @@ When pressing the *Open List Manager* button in the main window, the window pict
 
 ![](/img/packinglistmanager.png)
 
-#### Future work
+### Future work
 
 **Checklist**
 
@@ -36,7 +36,7 @@ When pressing the *Open List Manager* button in the main window, the window pict
 
 
 
-#### Features
+### Features
 
 **Main window**
 
