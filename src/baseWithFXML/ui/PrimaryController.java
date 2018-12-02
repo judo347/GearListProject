@@ -56,8 +56,7 @@ public class PrimaryController implements Initializable{
         labelTotalWeight.setText(String.valueOf(datamodel.getTotalWeight()) + " grams");
     }
 
-    // When user click on buttonAddItem
-    // this method will be called.
+    /** Gets called when the buttonAddItem is pressed. Opens the addItem window.*/
     public void openWindowAddItem(ActionEvent event) {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/baseWithFXML/ui/AddItemScene.fxml"));
@@ -71,6 +70,7 @@ public class PrimaryController implements Initializable{
         }
     }
 
+    /** Gets called when the button openListManager is pressed. Opens the packinglist manager. */
     public void openPacketListManagerWindow(){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/baseWithFXML/ui/PackingListsManager.fxml"));
@@ -99,11 +99,10 @@ public class PrimaryController implements Initializable{
 
     @FXML
     public void refreshList() {
-        //Filling table
-        tableData.setItems(FXCollections.observableList(datamodel.getDataList()));
+        tableData.setItems(FXCollections.observableList(datamodel.getDataList())); //Filling table
     }
 
-    /** Done as initialization for the table. */
+    /** Initialization for the table. */
     private void setUpTableColumns(){
         //Telling witch value from Item goes into witch Column
         tableColumnNameOfItem.setCellValueFactory(new PropertyValueFactory<Item, String>("nameOfItem"));

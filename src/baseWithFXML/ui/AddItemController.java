@@ -12,8 +12,6 @@ import javafx.scene.control.TextField;
 
 public class AddItemController implements Initializable {
 
-    //private OwnFileManager ownFileManager; //reference to other class
-
     @FXML private Button buttonAddItem;
     @FXML private TextField textFieldNameOfItem;
     @FXML private TextField textFieldBrand;
@@ -28,12 +26,9 @@ public class AddItemController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // TODO (don't really need to do anything here).
-
     }
 
-    // When user click on buttonAddItem
-    // this method will be called.
+    /** Saves an item from the entered data. */
     public void saveItemBtnAction(ActionEvent event) {
 
         //if(!isInputLegit()) //TODO DOES NOT WORK
@@ -56,7 +51,6 @@ public class AddItemController implements Initializable {
         psc.getDatamodel().addItem(item);
 
         clearTextFields();
-
         psc.refreshList();
     }
 
