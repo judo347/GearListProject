@@ -28,7 +28,7 @@ public class PrimaryController implements Initializable{
     @FXML private Button buttonRefreshList;
     @FXML private Label labelTotalWeight;
     @FXML private Label labelTotalPrice;
-    //Table columns
+
     @FXML private TableColumn<Item, String> tableColumnNameOfItem;
     @FXML private TableColumn<Item, String> tableColumnBrand;
     @FXML private TableColumn<Item, String> tableColumnCount;

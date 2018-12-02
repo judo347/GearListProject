@@ -33,7 +33,6 @@ public class PackingListsManagerController {
     public void initialize(PrimaryController pc){
         this.pc = pc;
         setUpTableColumns();
-        //Opdate listView
         refreshListView();
         setUpListeners();
     }
