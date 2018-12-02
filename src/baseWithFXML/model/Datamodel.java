@@ -17,17 +17,7 @@ public class Datamodel {
 
         this.items = itemsList;
         this.packingLists = packingLists;
-        //tempTestTodoFillPackingList(); //TODO TEMP
-
-        currentHighestId = getHighestIdFromList(items);
-    }
-
-    /** TODO: Temp function. */
-    private void tempTestTodoFillPackingList(){
-        packingLists.add(new PackingList("Heloo 1"));
-        packingLists.add(new PackingList("Heloo 2"));
-        packingLists.add(new PackingList("Heloo 3"));
-        packingLists.add(new PackingList("Heloo 4"));
+        this.currentHighestId = getHighestIdFromList(items);
     }
 
     /** @return the highest id in the given list of items. */
