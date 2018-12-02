@@ -67,18 +67,16 @@ public class PackingListsManagerController {
         labelTotalWeight.setText(String.valueOf(getSelectedPackingList().getTotalWeight(pc.getDatamodel())) + " grams");
     }
 
+    /** Gets called when the listener for the packinglists list, gets triggered.*/
     private void doSomethingWhenClicked(){
-        //packingListTable.getItems().clear();
 
-
-        PackingList packingList = getSelectedPackingList();
-        ObservableList<ItemChecked> itemsList = packingList.getFullList(FXCollections.observableList(pc.getDatamodel().getDataList()));
-        packingListTable.setItems(itemsList);
-        refreshStats();
-        //packingListTable.setItems(packingListList.getSelectionModel().getSelectedItem().getFullList(pc.getDatamodel().getDataListArrayList()));
-
+        if(getSelectedPackingList() != null){
+            PackingList packingList = getSelectedPackingList();
+            ObservableList<ItemChecked> itemsList = packingList.getFullList(FXCollections.observableList(pc.getDatamodel().getDataList()));
+            packingListTable.setItems(itemsList);
+            refreshStats();
+        }
         System.out.println("TRIGGERED");
-        //TODO Change what is viewed in tableView
     }
 
     private void refreshListView(){
@@ -99,6 +97,7 @@ public class PackingListsManagerController {
     void deleteListBtnAction(ActionEvent event) {
         pc.getDatamodel().removeFromPackingList(getSelectedPackingList());
         refreshListView();
+        packingListList.getSelectionModel().selectLast();
     }
 
     private PackingList getSelectedPackingList(){
