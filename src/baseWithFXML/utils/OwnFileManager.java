@@ -49,6 +49,7 @@ public class OwnFileManager {
         }
 
         datamodel =  gson.fromJson(line, Datamodel.class);
+        datamodel.updateFields();
         return datamodel;
     }
 }

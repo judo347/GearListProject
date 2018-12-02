@@ -1,7 +1,6 @@
 package baseWithFXML.model;
 
 import baseWithFXML.utils.OwnFileManager;
-import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +16,10 @@ public class Datamodel {
 
         this.items = itemsList;
         this.packingLists = packingLists;
+        this.currentHighestId = getHighestIdFromList(items);
+    }
+
+    public void updateFields(){
         this.currentHighestId = getHighestIdFromList(items);
     }
 
