@@ -12,8 +12,6 @@ import javafx.scene.control.TextField;
 
 public class AddItemController implements Initializable {
 
-    //private OwnFileManager ownFileManager; //reference to other class
-
     @FXML private Button buttonAddItem;
     @FXML private TextField textFieldNameOfItem;
     @FXML private TextField textFieldBrand;
@@ -28,18 +26,14 @@ public class AddItemController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // TODO (don't really need to do anything here).
-
     }
 
-    // When user click on buttonAddItem
-    // this method will be called.
+    /** Saves an item from the entered data. */
     public void saveItemBtnAction(ActionEvent event) {
 
-        //if(!isInputLegit()) //TODO DOES NOT WORK
-        //    return;
+        if(!isInputLegit(textFieldNameOfItem.getText(), textFieldWeightInGrams.getText(), textFieldPriceInDKK.getText()))
+           return;
 
-        //Strings from input in window
         Item item = new Item();
 
         //Filling item with info from textFields
@@ -56,27 +50,30 @@ public class AddItemController implements Initializable {
         psc.getDatamodel().addItem(item);
 
         clearTextFields();
-
         psc.refreshList();
     }
 
-    /** @return true if the input is valid. */
-    private boolean isInputLegit(){
+    /** @return true if the input is legal. */
+    boolean isInputLegit(String name, String weight, String price){
 
-        String name = textFieldNameOfItem.getText();
-        String weight = textFieldWeightInGrams.getText();
-        String price = textFieldPriceInDKK.getText();
-
-        if (!(weight.equals("") && price.equals(""))) {
-            try {
-                Integer.parseInt(weight);
-                Integer.parseInt(price);
-            } catch (NumberFormatException e){
+        try {
+            //Name of item
+            if(name.length() < 1)
                 return false;
-            }
+
+            //Weight of item
+            if(weight.length() != 0)
+                Integer.parseInt(weight);
+
+            //Price of item
+            if(price.length() != 0)
+                Integer.parseInt(price);
+
+        }catch (NumberFormatException e){
+            return false;
         }
 
-        return name.length() >= 1;
+        return true;
     }
 
     /** Clears all textFields. */

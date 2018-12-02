@@ -1,7 +1,6 @@
 package baseWithFXML.model;
 
 import baseWithFXML.utils.OwnFileManager;
-import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,29 +8,19 @@ import java.util.List;
 
 public class Datamodel {
 
-    private ObservableList<Item> items;
+    private ArrayList<Item> items;
     private int currentHighestId; //Used to determine the next id to give an item.
     private ArrayList<PackingList> packingLists;
 
-    public Datamodel(ObservableList<Item> itemsList, ArrayList<PackingList> packingLists){
+    public Datamodel(ArrayList<Item> itemsList, ArrayList<PackingList> packingLists){
 
         this.items = itemsList;
         this.packingLists = packingLists;
-        //tempTestTodoFillPackingList(); //TODO TEMP
-
-        currentHighestId = getHighestIdFromList(items);
+        this.currentHighestId = getHighestIdFromList(items);
     }
 
-    public Datamodel(){
-        this(OwnFileManager.loadItemsListFromFile(), OwnFileManager.loadPackingListsFromFile());
-    }
-
-    /** TODO: Temp function. */
-    private void tempTestTodoFillPackingList(){
-        packingLists.add(new PackingList("Heloo 1"));
-        packingLists.add(new PackingList("Heloo 2"));
-        packingLists.add(new PackingList("Heloo 3"));
-        packingLists.add(new PackingList("Heloo 4"));
+    public void updateFields(){
+        this.currentHighestId = getHighestIdFromList(items);
     }
 
     /** @return the highest id in the given list of items. */
@@ -46,16 +35,9 @@ public class Datamodel {
         return highestCounter;
     }
 
-    /** Used to load both lists from the file. */
-    private void loadFile(){
-        items = OwnFileManager.loadItemsListFromFile();
-        packingLists = OwnFileManager.loadPackingListsFromFile();
-    }
-
     /** Saves the list to a file. Should be called when the main window is closed. */
     public void saveList(){
-        OwnFileManager.saveInformationToFile(new ArrayList<>(items));
-        OwnFileManager.savePackingLitsToFile(getPackingLists());
+        OwnFileManager.saveDatamodel(this);
     }
 
     /** STATS: total weight. */
@@ -128,7 +110,7 @@ public class Datamodel {
         return new ArrayList<>(items);
     }
 
-    public ObservableList<Item> getDataList() {
+    public ArrayList<Item> getDataList() {
         return items;
     }
 

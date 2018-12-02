@@ -13,7 +13,7 @@ public class PackingList {
 
     public PackingList(String name) {
         this.name = name;
-        itemIds = new ArrayList<>();
+        this.itemIds = new ArrayList<>();
     }
 
     /** @return a list of ItemChecked that contains all items, with the ones on this list checked. */
