@@ -2,6 +2,9 @@ package baseWithFXML.ui;
 
 import baseWithFXML.model.ItemChecked;
 import baseWithFXML.model.PackingList;
+import com.sun.javafx.scene.control.skin.TableHeaderRow;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -35,6 +38,7 @@ public class PackingListsManagerController {
         setUpTableColumns();
         refreshListView();
         setUpListeners();
+        packingListList.getSelectionModel().selectFirst();
     }
 
     /** Done as initialization for the table. */
@@ -55,6 +59,25 @@ public class PackingListsManagerController {
                 System.out.println("Hello");
             }
         });
+
+        //Disable reordering of columns
+        packingListTable.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                TableHeaderRow header = (TableHeaderRow) packingListTable.lookup("TableHeaderRow");
+                header.reorderingProperty().addListener(new ChangeListener<Boolean>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                        header.setReordering(false);
+                    }
+                });
+            }
+        });
+
+        /*
+        TableHeaderRow header = (TableHeaderRow) packingListTable.lookup("TableHeaderRow");
+        if(header != null)
+            header.setReordering(false);*/
     }
 
     private void setUpListeners(){

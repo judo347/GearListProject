@@ -7,6 +7,9 @@ import java.util.ResourceBundle;
 import baseWithFXML.model.Datamodel;
 import baseWithFXML.model.Item;
 import baseWithFXML.utils.OwnFileManager;
+import com.sun.javafx.scene.control.skin.TableHeaderRow;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +28,6 @@ import javafx.stage.Stage;
 public class PrimaryController implements Initializable{
 
     @FXML private Button buttonNewItem;
-    @FXML private Button buttonRefreshList;
     @FXML private Label labelTotalWeight;
     @FXML private Label labelTotalPrice;
 
@@ -113,6 +115,20 @@ public class PrimaryController implements Initializable{
         tableColumnPrice.setCellValueFactory(new PropertyValueFactory<Item, String>("priceInDKK"));
         tableColumnNote.setCellValueFactory(new PropertyValueFactory<Item, String>("note"));
         tableColumnCount.setCellValueFactory(new PropertyValueFactory<Item, String>("count"));
+
+        //Disable reordering of columns
+        tableData.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                TableHeaderRow header = (TableHeaderRow) tableData.lookup("TableHeaderRow");
+                header.reorderingProperty().addListener(new ChangeListener<Boolean>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                        header.setReordering(false);
+                    }
+                });
+            }
+        });
     }
 
     @FXML
