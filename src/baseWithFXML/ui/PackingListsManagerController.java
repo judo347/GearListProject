@@ -2,6 +2,7 @@ package baseWithFXML.ui;
 
 import baseWithFXML.model.ItemChecked;
 import baseWithFXML.model.PackingList;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -72,7 +73,7 @@ public class PackingListsManagerController {
 
 
         PackingList packingList = getSelectedPackingList();
-        ObservableList<ItemChecked> itemsList = packingList.getFullList(pc.getDatamodel().getDataList());
+        ObservableList<ItemChecked> itemsList = packingList.getFullList(FXCollections.observableList(pc.getDatamodel().getDataList()));
         packingListTable.setItems(itemsList);
         refreshStats();
         //packingListTable.setItems(packingListList.getSelectionModel().getSelectedItem().getFullList(pc.getDatamodel().getDataListArrayList()));

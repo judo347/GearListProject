@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 
 import baseWithFXML.model.Datamodel;
 import baseWithFXML.model.Item;
+import baseWithFXML.utils.OwnFileManager;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,7 +44,7 @@ public class PrimaryController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        datamodel = new Datamodel();
+        datamodel = OwnFileManager.loadDatamodel();
         setUpTableColumns();
         refreshList();
         refreshStats();
@@ -98,7 +100,7 @@ public class PrimaryController implements Initializable{
     @FXML
     public void refreshList() {
         //Filling table
-        tableData.setItems(datamodel.getDataList());
+        tableData.setItems(FXCollections.observableList(datamodel.getDataList()));
     }
 
     /** Done as initialization for the table. */

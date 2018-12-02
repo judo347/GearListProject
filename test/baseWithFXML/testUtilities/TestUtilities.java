@@ -4,6 +4,7 @@ import baseWithFXML.model.Item;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class TestUtilities {
@@ -19,8 +20,8 @@ public class TestUtilities {
         return items;
     }
 
-    public static ObservableList<Item> getNumberOfItemsObs(int count){
-        return FXCollections.observableList(getNumberOfItems(count));
+    public static ArrayList<Item> getNumberOfItemsObs(int count){
+        return getNumberOfItems(count);
     }
 
     public static Item getItem(int i){
