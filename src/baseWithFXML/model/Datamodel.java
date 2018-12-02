@@ -50,8 +50,8 @@ public class Datamodel {
         int totalWeight = 0;
 
         for (Item item : items) {
-            if(!item.getWeightInGrams().equals(""))
-                totalWeight += Integer.parseInt(item.getWeightInGrams());
+            if(item.getWeightInGrams() != -1)
+                totalWeight += item.getWeightInGrams();
         }
 
         return totalWeight;
@@ -67,8 +67,8 @@ public class Datamodel {
         int totalPrice = 0;
 
         for (Item item : items) {
-            if(!item.getPriceInDKK().equals(""))
-                totalPrice += Integer.parseInt(item.getPriceInDKK());
+            if(item.getPriceInDKK() != -1)
+                totalPrice += item.getPriceInDKK();
         }
 
         return totalPrice;

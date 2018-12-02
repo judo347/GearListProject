@@ -48,7 +48,13 @@ public class OwnFileManager {
             e.printStackTrace();
         }
 
-        datamodel =  gson.fromJson(line, Datamodel.class);
+        try {
+            datamodel =  gson.fromJson(line, Datamodel.class);
+        } catch (Exception e){
+            System.out.println("COULD NOT LOAD JSONFILE! OwnFileManager.loadDatamodel()");
+        }
+
+
         datamodel.updateFields();
         return datamodel;
     }

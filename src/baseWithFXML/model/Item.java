@@ -3,17 +3,17 @@ package baseWithFXML.model;
 public class Item {
 
     private String nameOfItem;
-    private String count;
-    private String weightInGrams;
+    private int count;
+    private int weightInGrams;
     private String brand;
     private String model;
     private String purchaseLocation;
-    private String priceInDKK;
+    private int priceInDKK;
     private String note;
     private int id;
 
     //Is this one really needed?
-    public Item(String nameOfItem, String count, String weightInGrams, String brand, String model, String purchaseLocation, String priceInDKK, String note, int id) {
+    public Item(String nameOfItem, int count, int weightInGrams, String brand, String model, String purchaseLocation, int priceInDKK, String note, int id) {
         this.nameOfItem = nameOfItem;
         this.count = count;
         this.weightInGrams = weightInGrams;
@@ -27,12 +27,12 @@ public class Item {
 
     public Item(){
         this.nameOfItem = "";
-        this.count = "";
-        this.weightInGrams = "";
+        this.count = 1;
+        this.weightInGrams = -1;
         this.brand = "";
         this.model = "";
         this.purchaseLocation = "";
-        this.priceInDKK = "";
+        this.priceInDKK = -1;
         this.note = "";
         this.id = -1;
     }
@@ -61,11 +61,11 @@ public class Item {
         return nameOfItem;
     }
 
-    public String getCount() {
+    public int getCount() {
         return count;
     }
 
-    public String getWeightInGrams() {
+    public int getWeightInGrams() {
         return weightInGrams;
     }
 
@@ -81,7 +81,7 @@ public class Item {
         return purchaseLocation;
     }
 
-    public String getPriceInDKK() {
+    public int getPriceInDKK() {
         return priceInDKK;
     }
 
@@ -99,12 +99,17 @@ public class Item {
         this.nameOfItem = nameOfItem;
     }
 
-    public void setCount(String count) {
+    public void setCount(int count) {
         this.count = count;
     }
 
-    public void setWeightInGrams(String weightInGrams) {
+    public void setWeightInGrams(int weightInGrams) {
         this.weightInGrams = weightInGrams;
+    }
+
+    public void setWeightInGrams(String weightInGrams){
+        if(weightInGrams.length() != 0)
+            this.weightInGrams = Integer.parseInt(weightInGrams);
     }
 
     public void setBrand(String brand) {
@@ -119,8 +124,13 @@ public class Item {
         this.purchaseLocation = purchaseLocation;
     }
 
-    public void setPriceInDKK(String priceInDKK) {
+    public void setPriceInDKK(int priceInDKK) {
         this.priceInDKK = priceInDKK;
+    }
+
+    public void setPriceInDKK(String priceInDKK){
+        if(priceInDKK.length() != 0)
+            this.priceInDKK = Integer.parseInt(priceInDKK);
     }
 
     public void setNote(String note) {

@@ -25,7 +25,7 @@ public class TestUtilities {
     }
 
     public static Item getItem(int i){
-        return new Item("TestName " + 1, String.valueOf(i), String.valueOf(i*100), "Test brand " + i,
-                "Model " + i, "Test Purcahse Location " + i, String.valueOf(i*50), "Test note " + i, i);
+        return new Item("TestName " + 1, i, i*100, "Test brand " + i,
+                "Model " + i, "Test Purcahse Location " + i, i*50, "Test note " + i, i);
     }
 }
